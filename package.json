@@ -3,7 +3,7 @@
   "name": "discord-bot-creator",
   "description": "Create your Discord bot in less than 30 minutes. ",
   "version": "0.0.2-alpha",
-  "author": "Michael Peters <michaelpeters5647@gmail.com>",
+  "author": "m5x5 <michaelpeters5647@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
@@ -24,7 +24,6 @@
     "electron-store": "^8.0.0",
     "eval": "^0.1.6",
     "fast-glob": "^3.2.7",
-    "next-auth": "^3.28.0",
     "next-remove-imports": "^1.0.6",
     "parse-function-string": "^0.1.1",
     "prop-types": "^15.7.2",
@@ -33,7 +32,6 @@
     "react-bootstrap-typeahead": "^5.2.0",
     "react-color": "^2.19.3",
     "sass": "^1.37.0",
-    "serialize-javascript": "^6.0.0",
     "youtubei": "^0.0.1-rc.20"
   },
   "devDependencies": {
@@ -47,7 +45,7 @@
     "typescript": "^4.5.4"
   },
   "build": {
-    "appId": "com.michaelpeters.discord-bot-creator",
+    "appId": "com.m5x5.discord-bot-creator",
     "productName": "Discord Bot Creator",
     "copyright": "Copyright © 2020 Michael Peters",
     "directories": {
