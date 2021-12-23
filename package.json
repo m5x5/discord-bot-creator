@@ -1,0 +1,66 @@
+{
+  "private": true,
+  "name": "discord-bot-creator",
+  "description": "Create your Discord bot in less than 30 minutes. ",
+  "version": "0.0.2-alpha",
+  "author": "Michael Peters <michaelpeters5647@gmail.com>",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "build": "nextron build -wl",
+    "build:win": "nextron build -w",
+    "build:linux": "nextron build -l",
+    "build:all": "nextron build --all",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.3",
+    "@stitches/react": "^1.2.6",
+    "@uiw/react-textarea-code-editor": "^1.4.13",
+    "bootstrap": "^5.0.2",
+    "discord.js": "^13.3.1",
+    "electron-log": "^4.4.1",
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.0.0",
+    "eval": "^0.1.6",
+    "fast-glob": "^3.2.7",
+    "next-auth": "^3.28.0",
+    "next-remove-imports": "^1.0.6",
+    "parse-function-string": "^0.1.1",
+    "prop-types": "^15.7.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-bootstrap": "^2.0.0-beta.4",
+    "react-bootstrap-typeahead": "^5.2.0",
+    "react-color": "^2.19.3",
+    "sass": "^1.37.0",
+    "serialize-javascript": "^6.0.0",
+    "youtubei": "^0.0.1-rc.20"
+  },
+  "devDependencies": {
+    "electron": "^16.0.5",
+    "electron-builder": "^22.11.7",
+    "electron-reloader": "^1.2.1",
+    "next": "^11.0.1",
+    "nextron": "^7.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.5.4"
+  },
+  "build": {
+    "appId": "com.michaelpeters.discord-bot-creator",
+    "productName": "Discord Bot Creator",
+    "copyright": "Copyright © 2020 Michael Peters",
+    "directories": {
+      "output": "dist",
+      "buildResources": "resources"
+    },
+    "files": [
+      "package.json",
+      "app",
+      "resources"
+    ],
+    "publish": false,
+    "asar": true,
+    "asarUnpack": "resources"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "isBackground": false,
+      "label": "development",
+      "detail": "Start app in development mode",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}
