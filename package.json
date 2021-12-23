@@ -24,7 +24,6 @@
     "electron-store": "^8.0.0",
     "eval": "^0.1.6",
     "fast-glob": "^3.2.7",
-    "next-auth": "^3.28.0",
     "next-remove-imports": "^1.0.6",
     "parse-function-string": "^0.1.1",
     "prop-types": "^15.7.2",
@@ -33,7 +32,6 @@
     "react-bootstrap-typeahead": "^5.2.0",
     "react-color": "^2.19.3",
     "sass": "^1.37.0",
-    "serialize-javascript": "^6.0.0",
     "youtubei": "^0.0.1-rc.20"
   },
   "devDependencies": {
