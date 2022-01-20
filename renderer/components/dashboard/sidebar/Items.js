@@ -13,6 +13,7 @@ const Item = styled('div', {
   width: '4rem',
   height: '4rem',
   padding: '0.95rem 0.95rem',
+  cursor: 'pointer',
   '>svg': {
     width: '2.1rem',
     height: '2.1rem',
@@ -54,29 +55,22 @@ export default function SidebarItems() {
       <Item
         className={mode === 'command' ? 'active' : ''}
         onClick={setMode('command')}
-        style={{ cursor: 'pointer' }}
       >
         <ChatAlt2Icon />
       </Item>
       <Item
         className={mode === 'event' ? 'active' : ''}
         onClick={setMode('event')}
-        style={{ cursor: 'pointer' }}
       >
         <LightningBoltIcon />
       </Item>
       <Item
         className={mode === 'logs' ? 'active' : ''}
         onClick={setMode('logs')}
-        style={{ cursor: 'pointer' }}
       >
         <TerminalIcon />
       </Item>
-      <Item
-        onClick={() => setShowSettings(true)}
-        className="mt-auto"
-        style={{ cursor: 'pointer' }}
-      >
+      <Item onClick={setMode('settings')} className="mt-auto">
         <CogIcon />
       </Item>
       <SettingsModal

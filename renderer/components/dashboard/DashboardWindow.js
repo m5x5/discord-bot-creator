@@ -5,6 +5,7 @@ import CommandView from './command/CommandView';
 import { useDashboardContext } from './DashboardContext';
 import EventView from './event/EventView';
 import LogView from './log/LogView';
+import SettingsView from './settings';
 import Sidebar from './sidebar/index';
 
 const Container = styled('div', {
@@ -88,6 +89,8 @@ export default function DashboardWindow() {
                 return <CommandView command={handler} />;
               case 'logs':
                 return <LogView />;
+              case 'settings':
+                return <SettingsView />;
             }
           })()}
           <ActionForm
