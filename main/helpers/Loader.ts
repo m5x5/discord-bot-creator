@@ -5,10 +5,12 @@ import fs from 'fs';
 import path from 'path';
 
 export default class Loader {
-  filePath: string;
-  actions: any;
+  // filePath: string;
+  // actions: any;
   constructor({ filePath }) {
+    ///@ts-ignore
     this.filePath = filePath;
+    ///@ts-ignore
     this.actions = {};
   }
   static getSettings(folder: string) {

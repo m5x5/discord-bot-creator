@@ -45,12 +45,12 @@ if (isProd) {
   // Open links in the browser instead
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
-    return false;
+    return { action: 'deny' };
   });
 
   ipcMain.on('onBotLog', (log, _log) => {
     if (typeof log !== 'string') log = _log;
-    if (log) addLog(log);
+    if (log) addLog(log + '');
     mainWindow.webContents.send('onLogsUpdate', getLogs());
   });
 

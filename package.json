@@ -6,7 +6,7 @@
   "author": "m5x5 <michaelpeters5647@gmail.com>",
   "main": "app/background.js",
   "scripts": {
-    "dev": "nextron",
+    "dev": "node ./scripts/nextron-dev.js",
     "build": "nextron build -wl",
     "build:win": "nextron build -w",
     "build:linux": "nextron build -l",
@@ -16,7 +16,9 @@
   "dependencies": {
     "@heroicons/react": "^1.0.3",
     "@stitches/react": "^1.2.6",
+    "@types/webpack-merge": "^5.0.0",
     "@uiw/react-textarea-code-editor": "^1.4.13",
+    "arg": "^5.0.1",
     "bootstrap": "^5.0.2",
     "discord.js": "^13.3.1",
     "electron-log": "^4.4.1",
@@ -26,15 +28,24 @@
     "fast-glob": "^3.2.7",
     "next-remove-imports": "^1.0.6",
     "parse-function-string": "^0.1.1",
+    "pidtree": "^0.5.0",
     "prop-types": "^15.7.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-bootstrap": "^2.0.0-beta.4",
     "react-bootstrap-typeahead": "^5.2.0",
     "react-color": "^2.19.3",
     "sass": "^1.37.0",
+    "webpack-merge": "^5.8.0",
     "youtubei": "^0.0.1-rc.20"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "babel-loader": "^8.2.3",
     "electron": "^16.0.5",
     "electron-builder": "^22.11.7",
     "electron-reloader": "^1.2.1",
@@ -42,7 +53,9 @@
     "nextron": "^7.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.5.4"
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4",
+    "webpack-cli": "^4.9.1"
   },
   "build": {
     "appId": "com.m5x5.discord-bot-creator",
