@@ -1,7 +1,8 @@
 import { ipcRenderer } from 'electron';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
+import Button from '../../core/Button';
 import Input from '../../core/Input';
 import Label from '../../core/Label';
 
@@ -125,7 +126,7 @@ export default function SettingsView({ onHide }: Props) {
         />
       </Form>
       <Button onClick={onHide}>Close</Button>
-      <Button onClick={saveSettings} variant="success" className="mt-3">
+      <Button onClick={saveSettings} variant="success">
         Save
       </Button>
     </Container>

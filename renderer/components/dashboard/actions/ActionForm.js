@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { evalHTML, evalInit, evalListener } from '../../../lib/runInContext';
+import Button from '../../core/Button';
 import { useDashboardContext } from '../DashboardContext';
 import ActionDropdown from './ActionDropdown';
 import FieldManager, { fieldsSupported } from './Fields';

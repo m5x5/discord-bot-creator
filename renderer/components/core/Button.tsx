@@ -25,6 +25,16 @@ const Button = styled('button', {
           darkenedColor2: '$gray800',
         },
       },
+      success: {
+        backgroundColor: '$success',
+        color: '$black',
+        '&:hover': {
+          darkenedColor4: '$success',
+        },
+        '&:active': {
+          darkenedColor5: '$success',
+        },
+      },
     },
     width: {
       full: {
