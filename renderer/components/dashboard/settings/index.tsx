@@ -1,14 +1,19 @@
 import { ipcRenderer } from 'electron';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
 import Input from '../../core/Input';
 import Label from '../../core/Label';
 
+const Container = styled('div', {
+  display: 'block',
+});
+
 const Title = styled('span', {
   fontSize: '1.5rem',
-  fontFamily: 'Outfit, Open Sans, $system',
+  display: 'block',
   fontWeight: 'semibold',
+  marginBottom: '$2',
 });
 
 type Props = {
@@ -39,10 +44,8 @@ export default function SettingsView({ onHide }: Props) {
   };
 
   return (
-    <div>
-      <Modal.Title>
-        <Title>Settings</Title>
-      </Modal.Title>
+    <Container>
+      <Title>Settings</Title>
       <Form>
         <Form.Group className="mb-3">
           <Label>Prefix</Label>
@@ -125,6 +128,6 @@ export default function SettingsView({ onHide }: Props) {
       <Button onClick={saveSettings} variant="success" className="mt-3">
         Save
       </Button>
-    </div>
+    </Container>
   );
 }
