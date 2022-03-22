@@ -1,17 +1,40 @@
 import { styled } from '../../stitches.config';
 
-const Container = styled('button', {
+const Button = styled('button', {
   color: 'white',
-  backgroundColor: '$primary',
   border: 'none',
-  borderRadius: '0.5rem',
-  padding: '0.5rem 1rem 0.5rem',
-  fontWeight: 'bold',
-  '&:hover': {
-    backgroundColor: '$primaryDark',
+  borderRadius: '$1',
+  padding: '0.5rem 1rem',
+  fontWeight: '500',
+  fontSize: '$2',
+  fontFamily: '$sans',
+  variants: {
+    variant: {
+      primary: {
+        backgroundColor: '$primary',
+        '&:hover': {
+          backgroundColor: '$primaryDark',
+        },
+      },
+      secondary: {
+        backgroundColor: '$gray800',
+        '&:hover': {
+          darkenedColor1: '$gray800',
+        },
+        '&:active': {
+          darkenedColor2: '$gray800',
+        },
+      },
+    },
+    width: {
+      full: {
+        width: '100%',
+      },
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
   },
 });
 
-export default function Button({ children, ...props }) {
-  return <Container {...props}>{children}</Container>;
-}
+export default Button;

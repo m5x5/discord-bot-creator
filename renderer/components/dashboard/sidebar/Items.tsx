@@ -4,10 +4,8 @@ import {
   LightningBoltIcon,
   TerminalIcon,
 } from '@heroicons/react/solid';
-import { useState } from 'react';
 import { styled } from '../../../stitches.config';
 import { useDashboardContext } from '../DashboardContext';
-import SettingsModal from '../settings/SettingsModal';
 
 const Item = styled('div', {
   width: '3rem',
@@ -45,7 +43,6 @@ const Bar = styled('div', {
 });
 
 export default function SidebarItems() {
-  const [showSettings, setShowSettings] = useState(false);
   const { updateMode, mode } = useDashboardContext();
 
   const setMode = (mode) => () => updateMode(mode);
@@ -73,10 +70,6 @@ export default function SidebarItems() {
       <Item onClick={setMode('settings')} className="mt-auto">
         <CogIcon />
       </Item>
-      <SettingsModal
-        show={showSettings}
-        onHide={() => setShowSettings(false)}
-      />
     </Bar>
   );
 }

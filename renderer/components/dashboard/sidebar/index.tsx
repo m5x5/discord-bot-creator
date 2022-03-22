@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { Badge, Button, Card, Form, Nav } from 'react-bootstrap';
+import { Badge, Card, Form, Nav } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
+import Button from '../../core/Button';
 import { useDashboardContext } from '../DashboardContext';
 import SidebarBotControls from './Controls';
 import ControlsContextProvider from './Controls/Context';
@@ -29,6 +29,12 @@ const Item = styled('div', {
       },
     },
   },
+});
+
+const Footer = styled('div', {
+  padding: '0.3rem',
+  borderTop: '1px solid rgba(0, 0, 0, 0.2)',
+  backgroundColor: '$gray900',
 });
 
 export default function Sidebar({ selected }) {
@@ -83,21 +89,21 @@ export default function Sidebar({ selected }) {
             </Form.Select>
           </Form.Group>
         </Card.Body>
-        <Card.Footer>
+        <Footer>
           <ControlsContextProvider>
             <SidebarBotControls />
           </ControlsContextProvider>
-        </Card.Footer>
-        <Card.Footer className="d-flex flex-row justify-content-between align-items-center flex-wrap gap-2">
-          <Button onClick={() => addHandler()} variant="secondary">
+        </Footer>
+        <Footer className="d-flex flex-row justify-content-between align-items-center flex-wrap gap-2">
+          <Button
+            onClick={() => addHandler()}
+            variant="secondary"
+            width={'full'}
+          >
             Add Command
           </Button>
-        </Card.Footer>
+        </Footer>
       </Card>
     </>
   );
 }
-
-Sidebar.propTypes = {
-  selected: PropTypes.any,
-};

@@ -1,6 +1,7 @@
-import { ipcRenderer } from "electron";
-import { useEffect, useState } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { ipcRenderer } from 'electron';
+import { useEffect, useState } from 'react';
+import { Card, Container } from 'react-bootstrap';
+import Button from '../../core/Button';
 
 export default function LogView() {
   const [logs, setLogs] = useState([]);
@@ -10,19 +11,19 @@ export default function LogView() {
       setLogs(logs);
     };
 
-    ipcRenderer.on("onLogsUpdate", listener);
+    ipcRenderer.on('onLogsUpdate', listener);
 
     return () => {
-      ipcRenderer.removeListener("onLogsUpdate", listener);
+      ipcRenderer.removeListener('onLogsUpdate', listener);
     };
   }, [JSON.stringify(logs)]);
 
   useEffect(() => {
-    ipcRenderer.send("getLogs");
+    ipcRenderer.send('getLogs');
   }, []);
 
   const onClear = () => {
-    ipcRenderer.send("clearLogs");
+    ipcRenderer.send('clearLogs');
     setLogs([]);
   };
 
@@ -35,14 +36,7 @@ export default function LogView() {
           </Card>
         ))}
       </div>
-      <Button
-        bsStyle="primary"
-        bsSize="large"
-        onClick={onClear}
-        className="mt-3"
-      >
-        Clear
-      </Button>
+      <Button onClick={onClear}>Clear</Button>
     </Container>
   );
 }
