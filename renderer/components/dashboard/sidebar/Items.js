@@ -10,13 +10,13 @@ import { useDashboardContext } from '../DashboardContext';
 import SettingsModal from '../settings/SettingsModal';
 
 const Item = styled('div', {
-  width: '4rem',
-  height: '4rem',
-  padding: '0.95rem 0.95rem',
+  width: '3rem',
+  height: '3rem',
+  padding: '0.6rem 0.6rem',
   cursor: 'pointer',
   '>svg': {
-    width: '2.1rem',
-    height: '2.1rem',
+    width: '100%',
+    height: '100%',
     filter: 'grayscale(100%) opacity(0.5)',
     color: '$primary',
     transition: '0.2s',
@@ -38,7 +38,7 @@ const Item = styled('div', {
 const Bar = styled('div', {
   flex: '0 0 4rem',
   padding: '0',
-  gap: '0.5rem',
+
   '>.navbar': {
     flex: '0 0 4rem',
   },

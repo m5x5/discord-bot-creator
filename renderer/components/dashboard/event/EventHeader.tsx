@@ -1,5 +1,6 @@
 import { Col, Form, FormControl, Row } from 'react-bootstrap';
 import Input from '../../core/Input';
+import Label from '../../core/Label';
 import { useDashboardContext } from '../DashboardContext';
 import HandlerNameInput from '../handlers/HandlerNameInput';
 
@@ -237,8 +238,8 @@ export default function EventHeader() {
           </Col>
         </Row>
         <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>Trigger</Form.Label>
+          <div className="mb-3">
+            <Label>Trigger</Label>
             <Form.Select value={event?.['event-type']} onChange={onSelect}>
               <option value="0">None</option>
               <option value="1">Bot Initialization</option>
@@ -280,25 +281,23 @@ export default function EventHeader() {
               <option value="37">On Bot Error</option>
               <option value="38">On Time Restricted Command</option>
             </Form.Select>
-          </Form.Group>
+          </div>
           {option?.temp && (
-            <Form.Group className="mb-3">
-              <Form.Label>
-                {option.tempLabel || 'Temp Variable Name'}
-              </Form.Label>
+            <div className="mb-3">
+              <Label>{option.tempLabel || 'Temp Variable Name'}</Label>
               <Input type="text" value={event?.temp} onChange={onChangeTemp} />
               <Form.Text>{option.tempDescription || ''}</Form.Text>
-            </Form.Group>
+            </div>
           )}
           {option?.temp2 && (
-            <Form.Group className="mb-3">
-              <Form.Label>{option.temp2Description}</Form.Label>
+            <div className="mb-3">
+              <Label>{option.temp2Description}</Label>
               <FormControl
                 type="text"
                 value={event?.temp2}
                 onChange={onChangeTemp2}
               />
-            </Form.Group>
+            </div>
           )}
         </Form>
       </Col>
