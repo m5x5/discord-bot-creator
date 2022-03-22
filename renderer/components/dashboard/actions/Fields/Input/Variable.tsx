@@ -1,5 +1,6 @@
 import { styled } from '../../../../../stitches.config';
 import Input from '../../../../core/Input';
+import Label from '../../../../core/Label';
 import { useDashboardContext } from '../../../DashboardContext';
 
 type Props = {
@@ -24,11 +25,6 @@ const Container = styled('div', {
       },
     },
   },
-});
-
-const Label = styled('label', {
-  display: 'block',
-  fontFamily: '$sans',
 });
 
 const Description = styled('span', {

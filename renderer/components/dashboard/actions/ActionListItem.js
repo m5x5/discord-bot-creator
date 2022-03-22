@@ -9,6 +9,7 @@ const Item = styled('div', {
   display: 'flex',
   flexFlow: 'row',
   width: '100%',
+  borderRadius: '$1',
   '>.close': {
     filter: 'opacity(0.1)',
     pointerEvents: 'none',

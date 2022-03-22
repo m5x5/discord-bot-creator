@@ -1,4 +1,5 @@
 import { styled } from '../../../../../stitches.config';
+import Label from '../../../../core/Label';
 import MyTextarea from '../../../../core/Textarea';
 import { useDashboardContext } from '../../../DashboardContext';
 
@@ -23,11 +24,6 @@ const Container = styled('div', {
       },
     },
   },
-});
-
-const Label = styled('label', {
-  display: 'block',
-  fontFamily: '$sans',
 });
 
 const Description = styled('span', {

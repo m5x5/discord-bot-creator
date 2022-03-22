@@ -3,7 +3,7 @@ import { styled } from '../../stitches.config';
 const Container = styled('input', {
   fontFamily: '$sans',
   select: 'focus-within',
-  padding: '0.45rem 0.8rem',
+  padding: '$2 $3',
   borderRadius: '$1',
   border: '1px solid $gray900',
   backgroundColor: '$gray800',
