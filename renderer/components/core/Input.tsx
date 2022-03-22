@@ -20,6 +20,14 @@ const Container = styled('input', {
     boxShadow: 'none !important',
     outline: 'none',
   },
+
+  variants: {
+    width: {
+      full: {
+        width: '100%',
+      },
+    },
+  },
 });
 
 export default function Input(props) {

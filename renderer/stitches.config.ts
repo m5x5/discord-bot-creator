@@ -27,7 +27,7 @@ export const adjustBrightness = (color = '', percent = 1) => {
   };
 };
 
-export const { styled, getCssText, config } = createStitches({
+export const { styled, getCssText, config, css } = createStitches({
   theme: {
     fonts: {
       system: 'system-ui',

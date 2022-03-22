@@ -100,6 +100,7 @@ export function DashboardProvider({ children }) {
    */
   const updateHandler = (newHandler) => {
     Object.assign(handler, newHandler);
+    console.log({ newHandler });
     setState({ ...state });
   };
 
