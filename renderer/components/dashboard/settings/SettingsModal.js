@@ -4,6 +4,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
 import Input from '../../core/Input';
+import Label from '../../core/Label';
 
 const Title = styled('span', {
   fontSize: '1.5rem',
@@ -55,7 +56,7 @@ export default function SettingsModal(props) {
       <Modal.Body style={{ maxHeight: '80vh' }} className="overflow-auto">
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label>Prefix</Form.Label>
+            <Label>Prefix</Label>
             <Input
               type="text"
               onChange={changePrefix}
@@ -64,7 +65,7 @@ export default function SettingsModal(props) {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Token</Form.Label>
+            <Label>Token</Label>
             <Input
               type="text"
               value={settings?.token || ''}
@@ -82,7 +83,7 @@ export default function SettingsModal(props) {
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Separator</Form.Label>
+            <Label>Separator</Label>
             <Input
               type="text"
               value={settings?.separator || ''}
@@ -131,7 +132,7 @@ export default function SettingsModal(props) {
       <Modal.Footer className="d-flex flex-row justify-content-between">
         <Button onClick={onHide}>Close</Button>
         <Button onClick={saveSettings} variant="success" className="mt-3">
-          Save
+          Save lol
         </Button>
       </Modal.Footer>
     </Modal>
