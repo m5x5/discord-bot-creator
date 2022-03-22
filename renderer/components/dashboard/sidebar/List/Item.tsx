@@ -12,6 +12,7 @@ const Container = styled('div', {
   margin: '0',
   padding: '0.5rem 1rem',
   borderRadius: '$1',
+  color: '$gray100',
   variants: {
     color: {
       active: {

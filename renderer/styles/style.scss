@@ -1,87 +1,20 @@
 @font-face {
-  font-family: 'Poppins';
-  src: url(../public/fonts/Poppins-Medium.ttf) format('truetype');
-}
-
-@font-face {
   font-family: 'Open Sans';
   src: url(../public/fonts/Outfit.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: 'Outfit';
+  font-family: 'Outfit' !important;
   src: url(../public/fonts/Outfit.ttf) format('truetype');
 }
 
-$font-family-sans-serif: 'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto,
-  'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-  'Liberation Mono', 'Courier New', monospace;
-
-$primary: #5865f2;
-$secondary: #4e545c;
-$success: #57f287;
-$info: #5865f2;
-$warning: #fee75c;
-$danger: #ed4245;
-$dark: #36393f;
-$light: #dddddd;
-$darker: #2e3136;
-$link: #2d81ff;
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
-
-$border-width: 1px;
-$border-color: $gray-900;
-$body-bg: $dark;
-$body-color: $light;
-$component-active-bg: #393d42;
-// Link Color
-$headings-color: $light;
-// Contrast
-
-// Navs
-$nav-pills-link-active-bg: $primary;
-$navbar-light-brand-color: $light;
-$nav-pills-link-active-bg: $component-active-bg;
-$nav-link-color: $light;
-
-.nav-link {
-  color: $nav-link-color !important;
-}
-
-.navbar-brand {
-  font-weight: 600;
-}
-
-// Cards
-$card-bg: $dark;
-
-// Modals
-$modal-content-bg: $dark;
-$modal-header-border-color: $border-color;
-$modal-header-border-width: $border-width;
-$model-footer-border-width: $border-width;
-$modal-footer-border-color: $border-color;
-
-// Dropdowns
-$dropdown-bg: $input-bg;
-$dropdown-link-color: $light;
-$dropdown-link-hover-bg: $gray-700;
-// Hr
-$hr-height: $border-width;
-$hr-color: $border-color;
-$hr-opacity: 1;
-
-// Form Label
-$form-label-font-weight: 700;
-$form-label-font-size: 0.9rem;
-$form-label-color: $gray-500;
-.form-label {
-  text-transform: uppercase;
-  margin-bottom: 0.3rem !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
 }
 
 // Scrollbar
@@ -96,41 +29,41 @@ $form-label-color: $gray-500;
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: $gray-900;
+  // background-color: $gray-900;
 }
 
 // Bot Controls
 .bot-controls {
   svg {
     height: 2rem;
-    color: $primary;
-    filter: grayscale(100%) opacity(0.5);
+    // color: $primary;
+    // filter: grayscale(100%) opacity(0.5);
     transition: 0.2s;
 
-    &.danger {
-      color: $danger;
-    }
+    // &.danger {
+    // color: $danger;
+    // }
 
-    &.success {
-      color: $success;
-      filter: grayscale(100%) opacity(0.2);
-    }
+    // &.success {
+    // color: $success;
+    // filter: grayscale(100%) opacity(0.2);
+    // }
   }
 
-  svg:hover {
-    filter: grayscale(0) opacity(1);
-  }
+  // svg:hover {
+  // filter: grayscale(0) opacity(1);
+  // }
 }
 
 .x-icon {
-  color: $secondary;
+  // color: $secondary;
   visibility: hidden;
   transition: 0.2s;
   cursor: pointer;
 }
 
 .card:hover .x-icon {
-  color: $secondary;
+  // color: $secondary;
   visibility: visible;
 }
 
@@ -148,9 +81,3 @@ $form-label-color: $gray-500;
   color: #464c55;
   letter-spacing: 0.5pt;
 }
-
-@import './text.scss';
-@import './input.scss';
-@import './buttons.scss';
-@import './dashboard.scss';
-@import '~bootstrap/scss/bootstrap';

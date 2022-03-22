@@ -8,6 +8,7 @@ import Label from '../../core/Label';
 
 const Container = styled('div', {
   display: 'block',
+  color: '$white',
 });
 
 const Title = styled('span', {
@@ -15,14 +16,10 @@ const Title = styled('span', {
   display: 'block',
   fontWeight: 'semibold',
   marginBottom: '$2',
+  fontFamily: '$sans',
 });
 
-type Props = {
-  show: boolean;
-  onHide: () => void;
-};
-
-export default function SettingsView({ onHide }: Props) {
+export default function SettingsView() {
   const [settings, setSettings] = useSettings();
 
   const changePrefix = (e) => {
@@ -39,16 +36,13 @@ export default function SettingsView({ onHide }: Props) {
 
   const saveSettings = () => {
     ipcRenderer.send('saveSettings', settings);
-    ipcRenderer.on('saveSettings', (event, data) => {
-      onHide();
-    });
   };
 
   return (
     <Container>
       <Title>Settings</Title>
-      <Form>
-        <Form.Group className="mb-3">
+      <form>
+        <div className="mb-3">
           <Label>Prefix</Label>
           <Input
             type="text"
@@ -56,8 +50,8 @@ export default function SettingsView({ onHide }: Props) {
             value={settings?.tag}
             placeholder="!"
           />
-        </Form.Group>
-        <Form.Group className="mb-3">
+        </div>
+        <div className="mb-3">
           <Label>Token</Label>
           <Input
             type="text"
@@ -65,7 +59,7 @@ export default function SettingsView({ onHide }: Props) {
             onChange={changeToken}
             placeholder="e.g.: NzI3ODcyOTg0NTc1OTAxNzg2.XvyKig.4eiNtg8CGOkT1Www5sRngSLSJ30"
           />
-          <Form.Text>
+          <p>
             Get your token from the{' '}
             <a
               rel="noopener noreferrer"
@@ -75,9 +69,9 @@ export default function SettingsView({ onHide }: Props) {
             >
               bot dashboard
             </a>
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
+          </p>
+        </div>
+        <div className="mb-3">
           <Label>Separator</Label>
           <Input
             type="text"
@@ -85,15 +79,15 @@ export default function SettingsView({ onHide }: Props) {
             onChange={changeSeparator}
             placeholder="\\s+"
           />
-          <Form.Text>
+          <p>
             <a
               rel="noopener noreferrer"
               target="_blank"
               href="https://discord.com/developers/applications/"
               title="Applications Overview"
             ></a>
-          </Form.Text>
-        </Form.Group>
+          </p>
+        </div>
         <Form.Check
           type="switch"
           label="Run Bot on Save"
@@ -124,8 +118,7 @@ export default function SettingsView({ onHide }: Props) {
           }
           className="mb-3"
         />
-      </Form>
-      <Button onClick={onHide}>Close</Button>
+      </form>
       <Button onClick={saveSettings} variant="success">
         Save
       </Button>

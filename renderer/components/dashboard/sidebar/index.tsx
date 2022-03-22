@@ -7,6 +7,25 @@ import ControlsContextProvider from './Controls/Context';
 import SidebarItems from './Items';
 import SidebarListItem from './List/Item';
 
+const Items = styled('div', {
+  maxWidth: '100vw',
+  height: '100vh',
+
+  '>.card-body': {
+    backgroundColor: '$gray800',
+  },
+
+  '@bp1': {
+    height: '100vh',
+    display: 'flex',
+    flexFlow: 'column',
+
+    '>.card-body': {
+      flexGrow: '1',
+    },
+  },
+});
+
 const Footer = styled('div', {
   padding: '0.3rem',
   borderTop: '1px solid rgba(0, 0, 0, 0.2)',
@@ -28,7 +47,7 @@ export default function Sidebar({ selected }) {
     <>
       <SidebarItems />
       {['command', 'event'].includes(mode) && (
-        <Card className="items">
+        <Items>
           <Card.Body className="px-1 py-1 overflow-auto">
             <Nav variant="pills" className="flex-column d-md-block d-none">
               {handlers.map((d, i) => (
@@ -72,7 +91,7 @@ export default function Sidebar({ selected }) {
               Add Command
             </Button>
           </Footer>
-        </Card>
+        </Items>
       )}
     </>
   );

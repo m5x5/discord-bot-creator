@@ -10,6 +10,8 @@ const Item = styled('div', {
   flexFlow: 'row',
   width: '100%',
   borderRadius: '$1',
+  borderColor: '$gray900',
+
   '>.close': {
     filter: 'opacity(0.1)',
     pointerEvents: 'none',

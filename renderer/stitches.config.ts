@@ -45,6 +45,7 @@ export const { styled, getCssText, config } = createStitches({
       darker: '#2e3136',
       link: '#2d81ff',
       black: '#000000',
+      white: '#ffffff',
 
       // Dark
       primaryDark: '#5259d7',
