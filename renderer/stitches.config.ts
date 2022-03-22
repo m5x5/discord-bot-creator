@@ -1,6 +1,6 @@
 import { createStitches } from '@stitches/react';
 
-const adjustBrightness = (color = '', percent = 1) => {
+export const adjustBrightness = (color = '', percent = 1) => {
   if (color.startsWith('$')) {
     color = config.theme.colors[color.slice(1)] || color;
   }
@@ -95,5 +95,14 @@ export const { styled, getCssText, config } = createStitches({
   utils: {
     darkenedColor1: (color) => adjustBrightness(color, -1),
     darkenedColor2: (color) => adjustBrightness(color, -2),
+    darkenedColor3: (color) => adjustBrightness(color, -3),
+    darkenedColor4: (color) => adjustBrightness(color, -4),
+    darkenedColor5: (color) => adjustBrightness(color, -5),
+
+    lightenedColor1: (color) => adjustBrightness(color, 1),
+    lightenedColor2: (color) => adjustBrightness(color, 2),
+    lightenedColor3: (color) => adjustBrightness(color, 3),
+    lightenedColor4: (color) => adjustBrightness(color, 4),
+    lightenedColor5: (color) => adjustBrightness(color, 5),
   },
 });

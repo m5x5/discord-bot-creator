@@ -1,35 +1,11 @@
-import { Badge, Card, Form, Nav } from 'react-bootstrap';
+import { Card, Form, Nav } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
 import Button from '../../core/Button';
 import { useDashboardContext } from '../DashboardContext';
 import SidebarBotControls from './Controls';
 import ControlsContextProvider from './Controls/Context';
 import SidebarItems from './Items';
-
-const Item = styled('div', {
-  fontFamily: '$sans',
-  cursor: 'pointer',
-  display: 'flex',
-  flexFlow: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  margin: '0',
-  padding: '0.5rem 1rem',
-  borderRadius: '$1',
-  '&:hover': {
-    filter: 'opacity(0.7)',
-  },
-  variants: {
-    color: {
-      active: {
-        backgroundColor: '$secondary',
-      },
-      initial: {
-        color: '$light',
-      },
-    },
-  },
-});
+import SidebarListItem from './List/Item';
 
 const Footer = styled('div', {
   padding: '0.3rem',
@@ -39,7 +15,6 @@ const Footer = styled('div', {
 
 export default function Sidebar({ selected }) {
   const {
-    errors,
     handlers,
     commands,
     events,
@@ -55,20 +30,12 @@ export default function Sidebar({ selected }) {
         <Card.Body className="px-1 py-1 overflow-auto">
           <Nav variant="pills" className="flex-column d-md-block d-none">
             {handlers.map((d, i) => (
-              <Item
+              <SidebarListItem
                 color={handlerIndex === i ? 'active' : 'initial'}
                 onClick={() => updateHandlerIndex(i)}
-              >
-                <span
-                  dangerouslySetInnerHTML={{ __html: d?.name }}
-                  className="w-100"
-                />
-                {errors.filter((e) => e.handlerIndex === i).length ? (
-                  <Badge bg="danger" text="light">
-                    {errors.filter((e) => e.handlerIndex === i).length}
-                  </Badge>
-                ) : null}
-              </Item>
+                i={i}
+                d={d}
+              ></SidebarListItem>
             ))}
           </Nav>
           <Form.Group className="d-md-none">
