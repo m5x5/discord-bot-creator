@@ -46,7 +46,7 @@ export default function Sidebar({ selected }) {
     <>
       <SidebarItems />
       <Card className="items">
-        <Card.Body className="px-2 overflow-auto">
+        <Card.Body className="px-1 py-1 overflow-auto">
           <Nav variant="pills" className="flex-column d-md-block d-none">
             {handlers.map((d, i) => (
               <Item

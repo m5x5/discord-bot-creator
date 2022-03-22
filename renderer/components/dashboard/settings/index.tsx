@@ -3,10 +3,11 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
 import Input from '../../core/Input';
+import Label from '../../core/Label';
 
 const Title = styled('span', {
   fontSize: '1.5rem',
-  fontFamily: 'Poppins, Open Sans, $system',
+  fontFamily: 'Outfit, Open Sans, $system',
   fontWeight: 'semibold',
 });
 
@@ -44,7 +45,7 @@ export default function SettingsView({ onHide }: Props) {
       </Modal.Title>
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>Prefix</Form.Label>
+          <Label>Prefix</Label>
           <Input
             type="text"
             onChange={changePrefix}
@@ -53,7 +54,7 @@ export default function SettingsView({ onHide }: Props) {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Token</Form.Label>
+          <Label>Token</Label>
           <Input
             type="text"
             value={settings?.token || ''}
@@ -63,15 +64,17 @@ export default function SettingsView({ onHide }: Props) {
           <Form.Text>
             Get your token from the{' '}
             <a
+              rel="noopener noreferrer"
               target="_blank"
               href="https://discord.com/developers/applications/"
+              title="Discord Applications Overview"
             >
               bot dashboard
             </a>
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Separator</Form.Label>
+          <Label>Separator</Label>
           <Input
             type="text"
             value={settings?.separator || ''}
@@ -80,8 +83,10 @@ export default function SettingsView({ onHide }: Props) {
           />
           <Form.Text>
             <a
+              rel="noopener noreferrer"
               target="_blank"
               href="https://discord.com/developers/applications/"
+              title="Applications Overview"
             ></a>
           </Form.Text>
         </Form.Group>

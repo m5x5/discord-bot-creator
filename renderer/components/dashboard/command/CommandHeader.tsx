@@ -1,6 +1,7 @@
-import { Col, Form, Row } from "react-bootstrap";
-import { useDashboardContext } from "../DashboardContext";
-import HandlerNameInput from "../handlers/HandlerNameInput";
+import { Col, Form, Row } from 'react-bootstrap';
+import Label from '../../core/Label';
+import { useDashboardContext } from '../DashboardContext';
+import HandlerNameInput from '../handlers/HandlerNameInput';
 
 export default function DashboardWindowHeader() {
   const { handler: command, updateHandler } = useDashboardContext();
@@ -22,21 +23,21 @@ export default function DashboardWindowHeader() {
       <Col sm="8" className="mx-2 command-form">
         <Row>
           <Col className="mb-3">
-            <HandlerNameInput/>
+            <HandlerNameInput />
           </Col>
         </Row>
         <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>Command Type</Form.Label>
+          <div className="mb-3">
+            <Label>Command Type</Label>
             <Form.Select value={command.comType} onChange={onChangeComType}>
               <option value="0">Normal Command</option>
               <option value="1">Includes Word</option>
               <option value="2">Matches Regular Expression</option>
               <option value="3">Any Message</option>
             </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Command Restriction</Form.Label>
+          </div>
+          <div className="mb-3">
+            <Label>Command Restriction</Label>
             <Form.Select
               value={command.restriction}
               onChange={onChangeRestriction}
@@ -46,9 +47,9 @@ export default function DashboardWindowHeader() {
               <option value="2">Owner Only</option>
               <option value="3">DMs Only</option>
             </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Permissions</Form.Label>
+          </div>
+          <div className="mb-3">
+            <Label>Permissions</Label>
             <Form.Select
               value={command.permissions}
               onChange={onChangePermissions}
@@ -89,7 +90,7 @@ export default function DashboardWindowHeader() {
               <option value="MANAGE_WEBHOOKS">Manage Webhooks</option>
               <option value="MANAGE_EMOJIS">Manage Emojis</option>
             </Form.Select>
-          </Form.Group>
+          </div>
         </Form>
       </Col>
     </Row>
