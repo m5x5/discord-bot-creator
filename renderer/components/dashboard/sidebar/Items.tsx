@@ -36,6 +36,7 @@ const Item = styled('div', {
 const Bar = styled('div', {
   flex: '0 0 4rem',
   padding: '0',
+  borderRight: '1px solid rgba(0, 0, 0, 0.3)',
 
   '>.navbar': {
     flex: '0 0 4rem',

@@ -15,6 +15,7 @@ const Footer = styled('div', {
 
 export default function Sidebar({ selected }) {
   const {
+    mode,
     handlers,
     commands,
     events,
@@ -26,51 +27,53 @@ export default function Sidebar({ selected }) {
   return (
     <>
       <SidebarItems />
-      <Card className="items">
-        <Card.Body className="px-1 py-1 overflow-auto">
-          <Nav variant="pills" className="flex-column d-md-block d-none">
-            {handlers.map((d, i) => (
-              <SidebarListItem
-                color={handlerIndex === i ? 'active' : 'initial'}
-                onClick={() => updateHandlerIndex(i)}
-                i={i}
-                d={d}
-              ></SidebarListItem>
-            ))}
-          </Nav>
-          <Form.Group className="d-md-none">
-            <Form.Select
-              id="command"
-              value={selected}
-              onChange={(e) => updateHandlerIndex(e.target.value)}
-            >
-              {commands?.concat(events || []).map((c, i) => (
-                <option
-                  key={'select-' + c?.name + '-' + i}
+      {['command', 'event'].includes(mode) && (
+        <Card className="items">
+          <Card.Body className="px-1 py-1 overflow-auto">
+            <Nav variant="pills" className="flex-column d-md-block d-none">
+              {handlers.map((d, i) => (
+                <SidebarListItem
+                  color={handlerIndex === i ? 'active' : 'initial'}
                   onClick={() => updateHandlerIndex(i)}
-                  value={i}
-                >
-                  {c?.name}
-                </option>
+                  i={i}
+                  d={d}
+                ></SidebarListItem>
               ))}
-            </Form.Select>
-          </Form.Group>
-        </Card.Body>
-        <Footer>
-          <ControlsContextProvider>
-            <SidebarBotControls />
-          </ControlsContextProvider>
-        </Footer>
-        <Footer className="d-flex flex-row justify-content-between align-items-center flex-wrap gap-2">
-          <Button
-            onClick={() => addHandler()}
-            variant="secondary"
-            width={'full'}
-          >
-            Add Command
-          </Button>
-        </Footer>
-      </Card>
+            </Nav>
+            <Form.Group className="d-md-none">
+              <Form.Select
+                id="command"
+                value={selected}
+                onChange={(e) => updateHandlerIndex(e.target.value)}
+              >
+                {commands?.concat(events || []).map((c, i) => (
+                  <option
+                    key={'select-' + c?.name + '-' + i}
+                    onClick={() => updateHandlerIndex(i)}
+                    value={i}
+                  >
+                    {c?.name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          </Card.Body>
+          <Footer>
+            <ControlsContextProvider>
+              <SidebarBotControls />
+            </ControlsContextProvider>
+          </Footer>
+          <Footer className="d-flex flex-row justify-content-between align-items-center flex-wrap gap-2">
+            <Button
+              onClick={() => addHandler()}
+              variant="secondary"
+              width={'full'}
+            >
+              Add Command
+            </Button>
+          </Footer>
+        </Card>
+      )}
     </>
   );
 }
