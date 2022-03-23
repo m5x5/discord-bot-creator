@@ -162,4 +162,54 @@ export const globalStyles = globalCss({
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: '$sans',
   },
+
+  '::-webkit-scrollbar ': {
+    width: '8px',
+  },
+
+  '::-webkit-scrollbar-track': {
+    borderRadius: '10px',
+    backgroundColor: '#34373a',
+  },
+
+  '::-webkit-scrollbar-thumb': {
+    borderRadius: '10px',
+    backgroundColor: '$gray900',
+  },
 });
+
+// // Bot Controls
+// .bot-controls {
+//   svg {
+//     height: 2rem;
+//     // color: $primary;
+//     // filter: grayscale(100%) opacity(0.5);
+//     transition: 0.2s;
+
+//     // &.danger {
+//     // color: $danger;
+//     // }
+
+//     // &.success {
+//     // color: $success;
+//     // filter: grayscale(100%) opacity(0.2);
+//     // }
+//   }
+
+//   // svg:hover {
+//   // filter: grayscale(0) opacity(1);
+//   // }
+// }
+
+// .card:hover .x-icon {
+//   // color: $secondary;
+//   visibility: visible;
+// }
+
+// .x-icon:hover {
+//   background-color: rgba(0, 0, 0, 0.1);
+// }
+
+// .x-icon:active {
+//   background-color: rgba(0, 0, 0, 0.2);
+// }

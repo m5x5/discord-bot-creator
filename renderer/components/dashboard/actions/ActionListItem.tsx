@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import { Button, Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
+import CloseIcon from '../../core/icons/CloseIcon';
 import { useDashboardContext } from '../DashboardContext';
 
 const Item = styled('div', {
@@ -23,6 +23,15 @@ const Item = styled('div', {
       pointerEvents: 'inherit',
     },
   },
+});
+
+const CloseButton = styled(CloseIcon, {
+  backgroundColor: '$light',
+  color: '$light',
+  fill: '$light',
+  stroke: '$light',
+  height: '$3',
+  width: '$3',
 });
 
 const renderTooltip = (error) => (props) =>
@@ -74,19 +83,10 @@ export default function ActionItem({ action, index, onSelect }) {
         >
           <Item>
             <p className="col my-0">{action?.name}</p>
-            <Button
-              className="btn-sm btn-danger btn-close close"
-              onClick={remove}
-            />
+            <CloseButton onClick={remove} />
           </Item>
         </Form.Group>
       </OverlayTrigger>
     </Col>
   );
 }
-
-ActionItem.propTypes = {
-  action: PropTypes.object,
-  index: PropTypes.number,
-  onSelect: PropTypes.func,
-};
