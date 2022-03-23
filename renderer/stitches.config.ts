@@ -4,7 +4,6 @@ export const adjustBrightness = (color = '', percent = 1) => {
   if (color.startsWith('$')) {
     color = config.theme.colors[color.slice(1)] || color;
   }
-  console.log(color);
 
   const num = parseInt(color.replace('#', ''), 16);
   const amt = Math.round(2.55 * percent);
@@ -21,13 +20,13 @@ export const adjustBrightness = (color = '', percent = 1) => {
     )
       .toString(16)
       .slice(1);
-  console.log({ darkenedColor });
+
   return {
     backgroundColor: darkenedColor,
   };
 };
 
-export const { styled, getCssText, config, css } = createStitches({
+export const { styled, getCssText, config, css, globalCss } = createStitches({
   theme: {
     fonts: {
       system: 'system-ui',

@@ -20,7 +20,6 @@ export default function Select(props: any) {
         option: (provided, state) => ({
           ...provided,
           backgroundColor: colors.gray900,
-          fontFamily: 'Outfit',
           fontWeight: 400,
           ':focus-visible': {
             backgroundColor: colors.gray800,
@@ -43,7 +42,6 @@ export default function Select(props: any) {
 
         control: (provided) => ({
           ...provided,
-          fontFamily: 'Outfit',
           backgroundColor: colors.gray900,
           color: 'white',
           border: '1px solid rgba(0, 0, 0, 0.3)',
@@ -67,6 +65,7 @@ export default function Select(props: any) {
         }),
       }}
       onChange={handleChange}
+      // formatOptionLabel={(option) => option?.label + option?.tag}
     />
   );
 }
