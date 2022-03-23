@@ -30,7 +30,7 @@ export const { styled, getCssText, config, css, globalCss } = createStitches({
   theme: {
     fonts: {
       system: 'system-ui',
-      sans: 'Open Sans',
+      sans: 'Outfit',
     },
     colors: {
       primary: '#5865f2',
@@ -93,16 +93,73 @@ export const { styled, getCssText, config, css, globalCss } = createStitches({
     bp3: '(min-width: 1024px)',
   },
   utils: {
-    darkenedColor1: (color) => adjustBrightness(color, -1),
-    darkenedColor2: (color) => adjustBrightness(color, -2),
-    darkenedColor3: (color) => adjustBrightness(color, -3),
-    darkenedColor4: (color) => adjustBrightness(color, -4),
-    darkenedColor5: (color) => adjustBrightness(color, -5),
+    darkenedColor1: (color: string) => adjustBrightness(color, -1),
+    darkenedColor2: (color: string) => adjustBrightness(color, -2),
+    darkenedColor3: (color: string) => adjustBrightness(color, -3),
+    darkenedColor4: (color: string) => adjustBrightness(color, -4),
+    darkenedColor5: (color: string) => adjustBrightness(color, -5),
 
-    lightenedColor1: (color) => adjustBrightness(color, 1),
-    lightenedColor2: (color) => adjustBrightness(color, 2),
-    lightenedColor3: (color) => adjustBrightness(color, 3),
-    lightenedColor4: (color) => adjustBrightness(color, 4),
-    lightenedColor5: (color) => adjustBrightness(color, 5),
+    lightenedColor1: (color: string) => adjustBrightness(color, 1),
+    lightenedColor2: (color: string) => adjustBrightness(color, 2),
+    lightenedColor3: (color: string) => adjustBrightness(color, 3),
+    lightenedColor4: (color: string) => adjustBrightness(color, 4),
+    lightenedColor5: (color: string) => adjustBrightness(color, 5),
+  },
+});
+
+export const globalStyles = globalCss({
+  '@font-face': [
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '100',
+      src: 'url("/fonts/Outfit-Thin.ttf") format("ttf")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '200',
+      src: 'url("/fonts/Outfit-ExtraLight.ttf") format("ttf")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '300',
+      src: 'url("/fonts/Outfit-Light.ttf") format("ttf")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '400',
+      src: 'url("fonts/Outfit-Regular.ttf") format("truetype")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '500',
+      src: 'url("fonts/Outfit-Medium.ttf") format("truetype")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '600',
+      src: 'url("fonts/Outfit-SemiBold.ttf") format("truetype")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '700',
+      src: 'url("fonts/Outfit-Bold.ttf") format("truetype")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '800',
+      src: 'url("fonts/Outfit-ExtraBold.ttf") format("truetype")',
+    },
+    {
+      fontFamily: 'Outfit',
+      fontWeight: '900',
+      src: 'url("fonts/Outfit-Black.ttf") format("truetype")',
+    },
+  ],
+  body: {
+    backgroundColor: '$gray800 !important',
+    fontFamily: 'Outfit !important',
+  },
+  'h1, h2, h3, h4, h5, h6': {
+    fontFamily: '$sans',
   },
 });

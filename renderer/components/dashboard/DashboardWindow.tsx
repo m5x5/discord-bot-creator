@@ -8,24 +8,19 @@ import SettingsView from './settings';
 import Sidebar from './sidebar/index';
 
 const Container = styled('div', {
-  display: 'flex',
+  display: 'grid',
   flexFlow: 'column',
   margin: '0',
   darkenedColor2: '$gray800',
   fontFamily: '$sans',
-
-  '>.navbar': {
-    flexFlow: 'row',
-    width: '4rem',
-    flexBasis: 'content',
-    display: 'flex',
-    alignSelf: 'start',
-    padding: '0',
-  },
+  gridTemplateRows: 'auto auto 1fr',
+  gridTemplateColumns: '1fr',
 
   '@bp1': {
     flexFlow: 'row',
     padding: 'inherit',
+    gridTemplateColumns: 'auto 1fr 6fr',
+    gridTemplateRows: '1fr',
 
     '>.navbar': {
       height: '100vh',
