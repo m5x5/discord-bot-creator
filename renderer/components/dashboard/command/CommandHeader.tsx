@@ -1,6 +1,7 @@
 import { Form } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
 import Label from '../../core/Label';
+import Select from '../../core/Select';
 import { useDashboardContext } from '../DashboardContext';
 import HandlerNameInput from '../handlers/HandlerNameInput';
 import PermissionSelect from './Header/PermissionSelect';
@@ -26,6 +27,27 @@ export default function DashboardWindowHeader() {
     updateHandler({ restriction: e.target.value });
   };
 
+  const comTypes = [
+    { value: '0', label: 'Normal Command' },
+    { value: '1', label: 'Includes Word' },
+    { value: '2', label: 'Matches Regular Expression' },
+    { value: '3', label: 'Any Message' },
+  ];
+
+  const comType =
+    comTypes.find((c) => c.value === command.comType) || comTypes[0];
+
+  const restrictions = [
+    { value: '0', label: 'None' },
+    { value: '1', label: 'Server Only' },
+    { value: '2', label: 'Owner Only' },
+    { value: '3', label: 'DMs Only' },
+  ];
+
+  const restriction =
+    restrictions.find((r) => r.value === command.restriction) ||
+    restrictions[0];
+
   return (
     <Container>
       <Group>
@@ -35,24 +57,19 @@ export default function DashboardWindowHeader() {
       <Form>
         <Group>
           <Label>Command Type</Label>
-          <Form.Select value={command.comType} onChange={onChangeComType}>
-            <option value="0">Normal Command</option>
-            <option value="1">Includes Word</option>
-            <option value="2">Matches Regular Expression</option>
-            <option value="3">Any Message</option>
-          </Form.Select>
+          <Select
+            value={comType}
+            onChange={onChangeComType}
+            options={comTypes}
+          />
         </Group>
         <Group>
           <Label>Command Restriction</Label>
-          <Form.Select
-            value={command.restriction}
+          <Select
+            value={restriction}
             onChange={onChangeRestriction}
-          >
-            <option value="0">None</option>
-            <option value="1">Server Only</option>
-            <option value="2">Owner Only</option>
-            <option value="3">DMs Only</option>
-          </Form.Select>
+            options={restrictions}
+          />
         </Group>
         <Group>
           <Label>Permissions</Label>
