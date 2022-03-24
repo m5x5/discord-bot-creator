@@ -100,7 +100,6 @@ export function DashboardProvider({ children }) {
    */
   const updateHandler = (newHandler) => {
     Object.assign(handler, newHandler);
-    console.log({ newHandler });
     setState({ ...state });
   };
 
@@ -187,7 +186,6 @@ export function DashboardProvider({ children }) {
     for (const key of actionSchema.fields) {
       action[key] = '';
     }
-    console.log(action);
 
     actions.push(action);
     setState({ ...state });

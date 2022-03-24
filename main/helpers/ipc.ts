@@ -59,16 +59,12 @@ ipcMain.on('chooseDirectory', async (event, folder) => {
 });
 
 ipcMain.on('getSettings', async (event, folder: string) => {
-  console.log({ folder });
   if (typeof folder !== 'string') folder = loader.filePath;
-  console.log('Getting settings');
   const settings = await Loader.getSettings(folder);
   event.sender.send('getSettings', settings);
 });
 
 ipcMain.handle('getBotInfo', async (event, folder: string) => {
-  console.log({ folder });
-  console.log('Getting bot info');
   if (typeof folder !== 'string') folder = null;
   const settings = JSON.parse(Loader.getSettings(folder));
   const token = settings?.token;
@@ -76,9 +72,7 @@ ipcMain.handle('getBotInfo', async (event, folder: string) => {
     partials: ['USER'],
     intents: [],
   });
-  console.log('Logging in');
   await client.login(token);
-  console.log('Logged in');
   const icon = client.user.displayAvatarURL({ format: 'png' });
   const name = client.user.username;
 

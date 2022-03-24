@@ -40,7 +40,6 @@ export default function FieldManager({ fields, fieldValues, form }) {
     }
     return Object.keys(form).map((field) => {
       const config = form[field];
-      console.log({ type: config.type });
       if (config.if) {
         const fi = config.if;
         if (typeof fi.greaterThan !== 'undefined') {

@@ -55,7 +55,6 @@ export default function ActionDropdown({ name, className, create }) {
         className={className}
         inputProps={{
           shouldSelectHint: (shouldSelect, e) => {
-            console.log(e.key);
             return e.key === 'Enter' || shouldSelect;
           },
         }}

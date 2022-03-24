@@ -14,7 +14,6 @@ export default class Loader {
     this.actions = {};
   }
   static getSettings(folder: string) {
-    console.log({ folder });
     return fs.readFileSync(
       path.resolve(folder, './data/settings.json'),
       'utf8'

@@ -260,7 +260,7 @@ const runInContext = (
 
   Object.assign(glob, _glob);
 
-  if (!functionString) return console.log('No function provided');
+  if (!functionString) return console.error('No function provided');
 
   const context = {
     glob,
