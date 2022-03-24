@@ -58,10 +58,9 @@ export default function Sidebar() {
   } = useDashboardContext();
 
   const list = commands
-    .concat(events)
+    ?.concat(events)
     .map((c, i) => ({ value: +i, label: c?.name }));
-  const selected = list.find((c) => c.value === handlerIndex) || list[0];
-  console.log({ selected });
+  const selected = list?.find((c) => c?.value === handlerIndex) || list?.[0];
 
   return (
     <>
