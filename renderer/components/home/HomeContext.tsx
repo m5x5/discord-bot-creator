@@ -1,5 +1,4 @@
 import { ipcRenderer } from 'electron';
-import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type HomeContextType = {
@@ -20,7 +19,7 @@ export function useHomeContext(): HomeContextType {
   return useContext(HomeContext);
 }
 
-export function HomeProvider({ children }): JSX.Element {
+export function HomeProvider({ children }) {
   const [state, setState] = useState({
     folders: [],
   });
@@ -73,7 +72,3 @@ export function HomeProvider({ children }): JSX.Element {
     </HomeContext.Provider>
   );
 }
-
-HomeProvider.propTypes = {
-  children: PropTypes.element,
-};

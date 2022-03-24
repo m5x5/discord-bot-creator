@@ -7,11 +7,9 @@ function MyApp({ Component, pageProps }) {
   globalStyles();
 
   return (
-    <>
-      <HomeProvider>
-        <Component {...pageProps} />
-      </HomeProvider>
-    </>
+    <HomeProvider>
+      <Component {...pageProps} />
+    </HomeProvider>
   );
 }
 

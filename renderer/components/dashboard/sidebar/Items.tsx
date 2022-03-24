@@ -12,6 +12,7 @@ const Item = styled('div', {
   height: '3rem',
   padding: '0.6rem 0.6rem',
   cursor: 'pointer',
+
   '>svg': {
     width: '100%',
     height: '100%',
@@ -34,12 +35,20 @@ const Item = styled('div', {
 });
 
 const Bar = styled('div', {
+  display: 'flex',
   flex: '0 0 4rem',
   padding: '0',
   borderRight: '1px solid rgba(0, 0, 0, 0.3)',
+  flexFlow: 'row',
 
-  '>.navbar': {
-    flex: '0 0 4rem',
+  '@bp1': {
+    height: '100vh',
+    flexFlow: 'column',
+    justifyContent: 'start',
+
+    '> .settings': {
+      marginTop: 'auto',
+    },
   },
 });
 
@@ -49,7 +58,7 @@ export default function SidebarItems() {
   const setMode = (mode) => () => updateMode(mode);
 
   return (
-    <Bar className="navbar">
+    <Bar>
       <Item
         className={mode === 'command' ? 'active' : ''}
         onClick={setMode('command')}
@@ -68,7 +77,7 @@ export default function SidebarItems() {
       >
         <TerminalIcon />
       </Item>
-      <Item onClick={setMode('settings')} className="mt-auto">
+      <Item onClick={setMode('settings')} className="settings">
         <CogIcon />
       </Item>
     </Bar>

@@ -21,12 +21,6 @@ const Container = styled('div', {
     padding: 'inherit',
     gridTemplateColumns: 'auto 1fr 6fr',
     gridTemplateRows: '1fr',
-
-    '>.navbar': {
-      height: '100vh',
-      flexFlow: 'column',
-      justifyContent: 'start',
-    },
   },
 });
 
