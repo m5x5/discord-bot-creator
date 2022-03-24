@@ -1,6 +1,6 @@
-import { Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { XIcon } from '@heroicons/react/solid';
+import { Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
-import CloseIcon from '../../core/icons/CloseIcon';
 import { useDashboardContext } from '../DashboardContext';
 
 const Item = styled('div', {
@@ -8,30 +8,25 @@ const Item = styled('div', {
   color: '$light',
   display: 'flex',
   flexFlow: 'row',
+  justifyContent: 'space-between',
   width: '100%',
   borderRadius: '$1',
-  borderColor: '$gray900',
+  border: '1px solid $gray900',
+  padding: '$2 $3',
 
-  '>.close': {
-    filter: 'opacity(0.1)',
-    pointerEvents: 'none',
-    transition: '0.2s all',
-  },
-  '&:hover': {
-    '>.close': {
-      filter: 'opacity(1)',
-      pointerEvents: 'inherit',
-    },
+  '> p': {
+    margin: 0,
   },
 });
 
-const CloseButton = styled(CloseIcon, {
-  backgroundColor: '$light',
-  color: '$light',
-  fill: '$light',
-  stroke: '$light',
-  height: '$3',
-  width: '$3',
+const CloseButton = styled(XIcon, {
+  color: '$gray700',
+  width: '$space$5',
+  cursor: 'pointer',
+
+  '&:hover': {
+    color: '$danger',
+  },
 });
 
 const renderTooltip = (error) => (props) =>
@@ -72,20 +67,14 @@ export default function ActionItem({ action, index, onSelect }) {
         overlay={renderTooltip(error?.message)}
         show={!!error}
       >
-        <Form.Group
-          className={
-            'border p-2 my-2 mx-0 row align-items-center rounded ' +
-            (error ? 'border-danger' : '')
-          }
+        <Item
+          className={error ? 'border-danger' : ''}
           onSelect={() => onSelect(index)}
-          style={{ cursor: 'pointer', backgroundColor: '#35393f' }}
           onClick={select}
         >
-          <Item>
-            <p className="col my-0">{action?.name}</p>
-            <CloseButton onClick={remove} />
-          </Item>
-        </Form.Group>
+          <p>{action?.name}</p>
+          <CloseButton onClick={remove} />
+        </Item>
       </OverlayTrigger>
     </Col>
   );
