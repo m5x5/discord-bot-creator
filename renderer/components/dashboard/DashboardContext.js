@@ -79,6 +79,7 @@ export function DashboardProvider({ children }) {
    * @param {number} index
    */
   const updateHandlerIndex = (index) => {
+    console.log({ index });
     let newIndex;
 
     if (handlers[index]) {
