@@ -1,12 +1,12 @@
 import { ipcRenderer } from 'electron';
 import path from 'path';
 import { useEffect, useState } from 'react';
+import { CloseButton } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
 import { useHomeContext } from '../HomeContext';
-import BotIcon from './BotIcon';
 
 const Container = styled('div', {
-  backgroundColor: '#2f3136',
+  darkenedColor3: '$gray800',
   border: 'none',
   borderRadius: '0.75rem',
   fontFamily: 'Open Sans',
@@ -17,6 +17,7 @@ const Container = styled('div', {
   display: 'grid',
   gridTemplateRows: 'auto auto auto',
   gap: '1rem',
+
   '&:hover': {
     boxShadow: '0px 7px 10px rgba(0, 0, 0, 0.3)',
   },
@@ -25,13 +26,13 @@ const Container = styled('div', {
     height: '2rem',
   },
   '>h3': {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
+    fontSize: '1.2rem',
+    fontWeight: '400',
     color: '$gray400',
   },
   '>p': {
     fontSize: '1rem',
-    color: '$gray800',
+    color: '$gray500',
     margin: '0',
     '&:hover': {
       textDecoration: 'underline',
@@ -72,11 +73,10 @@ export default function FolderCard({ folder, setSettings }: Props) {
 
   return (
     <Container onClick={openFolder}>
-      <BotIcon url={info.url} />
+      {/* <BotIcon url={info.url} /> */}
       <h3>{info.name || name}</h3>
-      <p className="muted" onClick={handleRemove}>
-        Remove
-      </p>
+
+      <CloseButton onClick={handleRemove} />
     </Container>
   );
 }

@@ -38,7 +38,7 @@ export default class Loader {
     files.unshift();
     const actions = files
       .map((file) => _eval(fs.readFileSync(file, 'utf-8')))
-      .map((content) => {
+      .map((content: any) => {
         return {
           name: content.name + '',
           form: JSON.stringify(content.form) + '',

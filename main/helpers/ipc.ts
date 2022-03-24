@@ -1,5 +1,4 @@
 import { exec } from 'child_process';
-import { Client } from 'discord.js';
 import { dialog, ipcMain } from 'electron';
 import { log } from 'electron-log';
 import { copyFiles } from './copy-file';
@@ -67,16 +66,8 @@ ipcMain.on('getSettings', async (event, folder: string) => {
 ipcMain.handle('getBotInfo', async (event, folder: string) => {
   if (typeof folder !== 'string') folder = null;
   const settings = JSON.parse(Loader.getSettings(folder));
-  const token = settings?.token;
-  const client = new Client({
-    partials: ['USER'],
-    intents: [],
-  });
-  await client.login(token);
-  const icon = client.user.displayAvatarURL({ format: 'png' });
-  const name = client.user.username;
 
-  return { url: icon, name };
+  return { name: settings?.name };
 });
 
 ipcMain.on('getActions', async (event) => {
