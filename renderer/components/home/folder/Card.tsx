@@ -1,8 +1,8 @@
 import { ipcRenderer } from 'electron';
 import path from 'path';
 import { useEffect, useState } from 'react';
-import { CloseButton } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
+import CloseButton from '../../core/icons/CloseIcon';
 import { useHomeContext } from '../HomeContext';
 
 const Container = styled('div', {

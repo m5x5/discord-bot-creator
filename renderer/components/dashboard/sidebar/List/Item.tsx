@@ -1,4 +1,3 @@
-import { Badge } from 'react-bootstrap';
 import { styled } from '../../../../stitches.config';
 import { useDashboardContext } from '../../DashboardContext';
 
@@ -44,9 +43,9 @@ export default function SidebarListItem({ d, i, ...props }: Props) {
     <Container {...props}>
       <span dangerouslySetInnerHTML={{ __html: d?.name }} className="w-100" />
       {errors.filter((e) => e.handlerIndex === i).length ? (
-        <Badge bg="danger" text="light">
+        <div text="light">
           {errors.filter((e) => e.handlerIndex === i).length}
-        </Badge>
+        </div>
       ) : null}
     </Container>
   );

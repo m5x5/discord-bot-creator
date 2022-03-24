@@ -1,5 +1,4 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { Col, Row } from 'react-bootstrap';
 import Label from '../../core/Label';
 import { useDashboardContext } from '../DashboardContext';
 import ActionDropdown from './ActionDropdown';
@@ -16,39 +15,37 @@ export default function ActionList() {
   };
 
   return (
-    <Row>
-      <Col sm="8" className="mx-2 mb-3 command-form">
-        <Label>Actions</Label>
-        <ActionDropdown name={action.name || ''} className="mb-4" create />
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable" ignoreContainerClipping>
-            {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
-                {actions.map((action, i) => (
-                  <Draggable
-                    key={'key-' + action.name + '-' + i}
-                    draggableId={action.name + '-' + i}
-                    index={i}
-                  >
-                    {(provided) => (
-                      <div
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                        key={i}
-                        index={i}
-                      >
-                        <ActionItem action={action} index={i} />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </Col>
-    </Row>
+    <div>
+      <Label>Actions</Label>
+      <ActionDropdown name={action.name || ''} className="mb-4" create />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable" ignoreContainerClipping>
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {actions.map((action, i) => (
+                <Draggable
+                  key={'key-' + action.name + '-' + i}
+                  draggableId={action.name + '-' + i}
+                  index={i}
+                >
+                  {(provided) => (
+                    <div
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                      key={i}
+                      index={i}
+                    >
+                      <ActionItem action={action} index={i} />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </div>
   );
 }
