@@ -1,7 +1,14 @@
 import { StopIcon } from '@heroicons/react/solid';
 import { ipcRenderer } from 'electron';
 import { Spinner } from 'react-bootstrap';
+import { styled } from '../../../../stitches.config';
 import { useControls } from './Context';
+
+const Icon = styled(StopIcon, {
+  color: '$danger',
+  height: '$space$9',
+  cursor: 'pointer',
+});
 
 export default function ControlsStop() {
   const [controls, setControls] = useControls();
@@ -24,7 +31,7 @@ export default function ControlsStop() {
     <Spinner className="mx-1" />
   ) : (
     <div onClick={stop} style={{ cursor: 'pointer' }}>
-      <StopIcon className="danger" />
+      <Icon />
     </div>
   );
 }

@@ -1,9 +1,16 @@
-import { SaveIcon } from "@heroicons/react/solid";
-import { ipcRenderer } from "electron";
-import { log } from "electron-log";
-import { useEffect } from "react";
-import { Spinner } from "react-bootstrap";
-import { useControls } from "./Context";
+import { SaveIcon } from '@heroicons/react/solid';
+import { ipcRenderer } from 'electron';
+import { log } from 'electron-log';
+import { useEffect } from 'react';
+import { Spinner } from 'react-bootstrap';
+import { styled } from '../../../../stitches.config';
+import { useControls } from './Context';
+
+const Icon = styled(SaveIcon, {
+  color: '$success',
+  height: '$space$9',
+  cursor: 'pointer',
+});
 
 export default function ControlsSave() {
   const [controls, setControls] = useControls();
@@ -17,39 +24,39 @@ export default function ControlsSave() {
         isSaving: true,
       });
     };
-    ipcRenderer.on("save", saveListener);
+    ipcRenderer.on('save', saveListener);
 
     const savedListener = () => {
       hasSaved = true;
-      log("Saved");
+      log('Saved');
       setControls({
         ...controls,
         isSaving: false,
       });
     };
-    ipcRenderer.on("saved", savedListener);
+    ipcRenderer.on('saved', savedListener);
 
     return () => {
-      ipcRenderer.removeListener("save", saveListener);
-      ipcRenderer.removeListener("saved", savedListener);
+      ipcRenderer.removeListener('save', saveListener);
+      ipcRenderer.removeListener('saved', savedListener);
     };
   }, [JSON.stringify(controls)]);
 
   const save = () => {
     if (controls.isStopping || controls.isStarting || controls.isSaving) return;
-    ipcRenderer.emit("save");
+    ipcRenderer.emit('save');
   };
 
   return controls.isSaving ? (
     <Spinner
       className="mx-1"
-      style={{ height: "1.5rem", width: "1.5rem", margin: "0.25rem" }}
+      style={{ height: '1.5rem', width: '1.5rem', margin: '0.25rem' }}
       animation="grow"
       variant="success"
     />
   ) : (
-    <div onClick={save} style={{ cursor: "pointer" }}>
-      <SaveIcon className="success" />
+    <div onClick={save} style={{ cursor: 'pointer' }}>
+      <Icon />
     </div>
   );
 }
