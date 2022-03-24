@@ -4,7 +4,6 @@ import { useDashboardContext } from '../../DashboardContext';
 export default function PermissionSelect() {
   const { handler: command, updateHandler } = useDashboardContext();
   const onChangePermissions = (value: string) => {
-    console.log({ value });
     updateHandler({ permissions: value });
   };
 
