@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 export default class Loader {
-  // filePath: string;
+  filePath: string;
   // actions: any;
   constructor({ filePath }) {
     ///@ts-ignore
