@@ -1,6 +1,5 @@
 import { ipcRenderer } from 'electron';
 import { useEffect, useState } from 'react';
-import { Card, Container } from 'react-bootstrap';
 import Button from '../../core/Button';
 import { useDashboardContext } from '../DashboardContext';
 
@@ -30,16 +29,16 @@ export default function LogView() {
   };
 
   return (
-    <Container>
+    <div>
       <div>
         {logs.map((log, i) => (
-          <Card key={i}>{log}</Card>
+          <div key={i}>{log}</div>
         ))}
         {errors.map((error, i) => (
-          <Card key={i}>{error.message}</Card>
+          <div key={i}>{error.message}</div>
         ))}
       </div>
       <Button onClick={onClear}>Clear</Button>
-    </Container>
+    </div>
   );
 }

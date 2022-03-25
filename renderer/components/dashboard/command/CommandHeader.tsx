@@ -1,4 +1,3 @@
-import { Form } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
 import Label from '../../core/Label';
 import Select from '../../core/Select';
@@ -54,7 +53,7 @@ export default function DashboardWindowHeader() {
         <Label>Name</Label>
         <HandlerNameInput />
       </Group>
-      <Form>
+      <form>
         <Group>
           <Label>Command Type</Label>
           <Select
@@ -75,7 +74,7 @@ export default function DashboardWindowHeader() {
           <Label>Permissions</Label>
           <PermissionSelect />
         </Group>
-      </Form>
+      </form>
     </Container>
   );
 }

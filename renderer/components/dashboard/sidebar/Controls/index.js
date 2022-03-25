@@ -1,6 +1,6 @@
-import { Button } from 'react-bootstrap';
 import useSettings from '../../../../lib/useSettings';
 import { styled } from '../../../../stitches.config';
+import Button from '../../../core/Button';
 import { useDashboardContext } from '../../DashboardContext';
 import { useControls } from './Context';
 import ControlsSave from './Save';

@@ -1,13 +1,12 @@
-import { Col, Tab } from "react-bootstrap";
-import { useState } from "react";
-import useCommands from "../lib/useCommands";
-import CommandHeader from "../components/dashboard/CommandHeader";
-import EventHeader from "../components/dashboard/EventHeader";
-import useEvents from "../lib/useEvents";
+import { useState } from 'react';
+import CommandHeader from '../components/dashboard/CommandHeader';
+import EventHeader from '../components/dashboard/EventHeader';
+import useCommands from '../lib/useCommands';
+import useEvents from '../lib/useEvents';
 
 export default function DashboardHandlerList({ selected }) {
   // Component Controls
-  const [selected] = useState("");
+  const [selected] = useState('');
 
   // Data
   const [events] = useEvents();
@@ -16,26 +15,22 @@ export default function DashboardHandlerList({ selected }) {
   const optionList = (commands || [])?.concat(events || []);
 
   return (
-    <Col
-      md={9}
-      className="p-4 command-view"
-      style={{ overflowY: "auto", maxHeight: "100vh" }}
-    >
-      <Tab.Content>
-        {optionList?.map(({ name, "event-type": eventType } = {}, i) => (
-          <Tab.Pane
-            eventKey={name + "-" + i}
+    <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>
+      <div>
+        {optionList?.map(({ name, 'event-type': eventType } = {}, i) => (
+          <div
+            eventKey={name + '-' + i}
             key={name}
             active={(!selected && i === 0) || selected === name}
           >
-            {typeof eventType !== "undefined" ? (
+            {typeof eventType !== 'undefined' ? (
               <EventHeader event={optionList[i]} eventIndex={i} />
             ) : (
               <CommandHeader command={optionList[i]} commandIndex={i} />
             )}
-          </Tab.Pane>
+          </div>
         ))}
-      </Tab.Content>
-    </Col>
+      </div>
+    </div>
   );
 }
