@@ -66,6 +66,7 @@ export default function createWindow(windowName, options) {
   win = new BrowserWindow({
     ...options,
     ...state,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
