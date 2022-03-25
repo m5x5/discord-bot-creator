@@ -43,9 +43,7 @@ export default function SidebarListItem({ d, i, ...props }: Props) {
     <Container {...props}>
       <span dangerouslySetInnerHTML={{ __html: d?.name }} className="w-100" />
       {errors.filter((e) => e.handlerIndex === i).length ? (
-        <div text="light">
-          {errors.filter((e) => e.handlerIndex === i).length}
-        </div>
+        <div>{errors.filter((e) => e.handlerIndex === i).length}</div>
       ) : null}
     </Container>
   );
