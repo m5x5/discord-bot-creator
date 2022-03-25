@@ -27,7 +27,12 @@ export default class Runner {
       });
 
       this.botProcess.on('message', (message) => {
-        log('from script: ' + message);
+        if (typeof message === 'object') {
+          log(JSON.stringify(message, null, 2));
+        } else {
+          log('from script: ' + message);
+        }
+
         if (message === 'ready') return resolve('Ready');
         if (message.type === 'error') {
           delete message.type;
