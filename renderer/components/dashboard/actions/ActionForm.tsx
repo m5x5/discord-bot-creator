@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Modal } from 'react-bootstrap';
 import { evalHTML, evalInit, evalListener } from '../../../lib/runInContext';
 import Button from '../../core/Button';
 import { useDashboardContext } from '../DashboardContext';
-import ActionDropdown from './ActionDropdown';
 import FieldManager, { fieldsSupported } from './Fields';
 
 export default function ActionForm({ show, isEvent, onHide }) {
@@ -75,34 +73,20 @@ export default function ActionForm({ show, isEvent, onHide }) {
   };
 
   return (
-    <Modal
-      show={show}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      onHide={hide}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          <ActionDropdown />
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{ height: '60vh', overflowY: 'scroll' }}>
-        {fieldsSupported(actionSchema?.fields) ? (
-          <FieldManager
-            fieldValues={action}
-            fields={actionSchema?.fields}
-            form={actionSchema?.form}
-          />
-        ) : (
-          <div dangerouslySetInnerHTML={{ __html: state.html }} ref={content} />
-        )}
-      </Modal.Body>
-      <Modal.Footer className="flex-row d-flex justify-content-between">
-        <Button onClick={hide}>Close</Button>
-        <Button onClick={hide} variant="success">
-          Save
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <div>
+      {fieldsSupported(actionSchema?.fields) ? (
+        <FieldManager
+          fieldValues={action}
+          fields={actionSchema?.fields}
+          form={actionSchema?.form}
+        />
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: state.html }} ref={content} />
+      )}
+      <Button onClick={hide}>Close</Button>
+      <Button onClick={hide} variant="success">
+        Save
+      </Button>
+    </div>
   );
 }

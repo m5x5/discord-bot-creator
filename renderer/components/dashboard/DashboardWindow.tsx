@@ -1,5 +1,4 @@
 import { styled } from '../../stitches.config';
-import ActionForm from './actions/ActionForm';
 import CommandView from './command/CommandView';
 import { useDashboardContext } from './DashboardContext';
 import EventView from './event/EventView';
@@ -30,13 +29,11 @@ const ViewContainer = styled('div', {
 });
 
 export default function DashboardWindow() {
-  const { mode, actionModalVisible, hideActionModal } = useDashboardContext();
-
-  let isEvent = mode === 'event';
+  const { mode } = useDashboardContext();
 
   return (
     <Container>
-      <Sidebar selected={''} />
+      <Sidebar />
       <ViewContainer>
         {(() => {
           switch (mode) {
@@ -50,11 +47,6 @@ export default function DashboardWindow() {
               return <SettingsView />;
           }
         })()}
-        <ActionForm
-          show={actionModalVisible}
-          onHide={hideActionModal}
-          isEvent={isEvent}
-        />
       </ViewContainer>
     </Container>
   );
