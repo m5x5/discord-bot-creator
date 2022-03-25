@@ -39,12 +39,21 @@ export default function ActionDropdown({ create }: Props) {
     }
   };
 
+  const filter = ({ data }, input) => {
+    if (!data?.name) return false;
+    const name = data.name.toLowerCase();
+    const search = input.toLowerCase();
+    console.log({ name, search });
+    return name.includes(search);
+  };
+
   return (
     <Container>
       <Select
         options={actionSchemas}
         formatOptionLabel={(data) => <OptionLabel data={data} />}
         onChange={select}
+        filterOption={filter}
       />
     </Container>
   );
