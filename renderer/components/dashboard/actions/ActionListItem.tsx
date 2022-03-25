@@ -1,6 +1,5 @@
 import { XIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { styled } from '../../../stitches.config';
 import { useDashboardContext } from '../DashboardContext';
 import ActionForm from './ActionForm';
@@ -26,6 +25,11 @@ const Item = styled('div', {
     '> p': {
       margin: 0,
     },
+
+    '> .error': {
+      fontSize: '$1',
+      color: '$danger',
+    },
   },
 });
 
@@ -38,13 +42,6 @@ const CloseButton = styled(XIcon, {
     color: '$danger',
   },
 });
-
-const renderTooltip = (error) => (props) =>
-  (
-    <Tooltip id="button-tooltip" {...props}>
-      {error}
-    </Tooltip>
-  );
 
 export default function ActionItem({ action, index }) {
   const {
@@ -74,27 +71,21 @@ export default function ActionItem({ action, index }) {
 
   return (
     <div>
-      <OverlayTrigger
-        placement="right"
-        delay={{ show: 250, hide: 400 }}
-        overlay={renderTooltip(error?.message)}
-        show={!!error}
-      >
-        <Item className={error ? 'border-danger' : ''}>
-          <div className="top" onClick={toggle}>
-            <p>{action?.name}</p>
-            <CloseButton onClick={remove} />
-          </div>
+      <Item className={error ? 'border-danger' : ''}>
+        <div className="top" onClick={toggle}>
+          <p>{action?.name}</p>
+          <p className="error">{error?.message}</p>
+          <CloseButton onClick={remove} />
+        </div>
 
-          {show && (
-            <ActionForm
-              show
-              onHide={() => showActionModal(false)}
-              isEvent={mode === 'event'}
-            />
-          )}
-        </Item>
-      </OverlayTrigger>
+        {show && (
+          <ActionForm
+            show
+            onHide={() => showActionModal(false)}
+            isEvent={mode === 'event'}
+          />
+        )}
+      </Item>
     </div>
   );
 }
