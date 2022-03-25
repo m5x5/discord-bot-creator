@@ -2,8 +2,8 @@ import { SaveIcon } from '@heroicons/react/solid';
 import { ipcRenderer } from 'electron';
 import { log } from 'electron-log';
 import { useEffect } from 'react';
-import { Spinner } from 'react-bootstrap';
 import { styled } from '../../../../stitches.config';
+import Spinner from '../../../core/Spinner';
 import { useControls } from './Context';
 
 const Icon = styled(SaveIcon, {
@@ -48,12 +48,7 @@ export default function ControlsSave() {
   };
 
   return controls.isSaving ? (
-    <Spinner
-      className="mx-1"
-      style={{ height: '1.5rem', width: '1.5rem', margin: '0.25rem' }}
-      animation="grow"
-      variant="success"
-    />
+    <Spinner />
   ) : (
     <div onClick={save} style={{ cursor: 'pointer' }}>
       <Icon />

@@ -1,8 +1,8 @@
 import { PlayIcon } from '@heroicons/react/solid';
 import { ipcRenderer } from 'electron';
 import { log } from 'electron-log';
-import { Spinner } from 'react-bootstrap';
 import { styled } from '../../../../stitches.config';
+import Spinner from '../../../core/Spinner';
 import { useControls } from './Context';
 
 const Icon = styled(PlayIcon, {
@@ -31,7 +31,7 @@ export default function ControlsStart() {
   };
 
   return isStarting ? (
-    <Spinner animation="grow" variant="primary" />
+    <Spinner />
   ) : (
     <div onClick={run}>
       <Icon />

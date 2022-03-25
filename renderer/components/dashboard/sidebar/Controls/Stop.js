@@ -1,7 +1,7 @@
 import { StopIcon } from '@heroicons/react/solid';
 import { ipcRenderer } from 'electron';
-import { Spinner } from 'react-bootstrap';
 import { styled } from '../../../../stitches.config';
+import Spinner from '../../../core/Spinner';
 import { useControls } from './Context';
 
 const Icon = styled(StopIcon, {
@@ -29,7 +29,7 @@ export default function ControlsStop() {
   };
 
   return controls.isStopping ? (
-    <Spinner className="mx-1" />
+    <Spinner color={'danger'} />
   ) : (
     <div onClick={stop} style={{ cursor: 'pointer' }}>
       <Icon />
