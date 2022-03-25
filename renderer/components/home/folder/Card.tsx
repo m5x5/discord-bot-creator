@@ -1,42 +1,42 @@
+import { XIcon } from '@heroicons/react/solid';
 import { ipcRenderer } from 'electron';
 import path from 'path';
 import { useEffect, useState } from 'react';
 import { styled } from '../../../stitches.config';
-import CloseButton from '../../core/icons/CloseIcon';
 import { useHomeContext } from '../HomeContext';
 
 const Container = styled('div', {
   darkenedColor3: '$gray800',
-  border: 'none',
-  borderRadius: '0.75rem',
-  fontFamily: 'Open Sans',
-  padding: '1rem 1rem',
-  transition: 'all 0.2s ease-in-out',
+  borderRadius: '$1',
+  padding: '$3',
   marginBottom: '1rem',
-  cursor: 'pointer',
   display: 'grid',
-  gridTemplateRows: 'auto auto auto',
+  gridTemplateColumns: 'auto auto',
   gap: '1rem',
 
-  '&:hover': {
-    boxShadow: '0px 7px 10px rgba(0, 0, 0, 0.3)',
-  },
-  '>.icon': {
-    color: '$gray800',
-    height: '2rem',
-  },
-  '>h3': {
+  '> h3': {
     fontSize: '1.2rem',
     fontWeight: '400',
     color: '$gray400',
-  },
-  '>p': {
-    fontSize: '1rem',
-    color: '$gray500',
+    cursor: 'pointer',
     margin: '0',
+    transition: 'color 0.2s ease-in-out',
+
     '&:hover': {
-      textDecoration: 'underline',
+      color: '$link',
     },
+  },
+});
+
+const CloseButton = styled(XIcon, {
+  color: '$gray800',
+  height: '1.5rem',
+  width: '1.5rem',
+  cursor: 'pointer',
+  transition: 'color 0.2s ease-in-out',
+
+  '&:hover': {
+    color: '$gray600',
   },
 });
 
@@ -72,9 +72,8 @@ export default function FolderCard({ folder, setSettings }: Props) {
   }, []);
 
   return (
-    <Container onClick={openFolder}>
-      {/* <BotIcon url={info.url} /> */}
-      <h3>{info.name || name}</h3>
+    <Container>
+      <h3 onClick={openFolder}>{info.name || name}</h3>
 
       <CloseButton onClick={handleRemove} />
     </Container>

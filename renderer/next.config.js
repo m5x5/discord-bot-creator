@@ -1,17 +1,20 @@
-const path = require("path");
-const removeImports = require("next-remove-imports")();
+const path = require('path');
+const removeImports = require('next-remove-imports')();
 
 module.exports = removeImports({
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.target = "electron-renderer";
+      config.target = 'electron-renderer';
     }
-    config.node.__dirname = true;
+
+    if (config?.node) {
+      config.node.__dirname = true;
+    }
 
     return config;
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
+    includePaths: [path.join(__dirname, 'styles')],
   },
   reactStrictMode: false,
   experimental: { esmExternals: true },
