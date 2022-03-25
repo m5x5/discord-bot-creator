@@ -23,8 +23,9 @@ export default function ControlsStop() {
   const onBotStop = (_event, res = {}) => {
     if (res.success) {
       setControls({ ...controls, isStopping: false, isRunning: false });
+    } else {
+      setControls({ ...controls, isStopping: false, isRunning: true });
     }
-    setControls({ ...controls, isStopping: false, isRunning: true });
   };
 
   return controls.isStopping ? (

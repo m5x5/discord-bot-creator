@@ -42,7 +42,10 @@ export default class Runner {
     });
   }
   stop() {
+    if (!this.botProcess) return;
+
     log('Stopping:', this.botProcess.pid);
+
     if (this.botProcess) {
       this.botProcess.kill();
       this.botProcess = null;
