@@ -6,8 +6,8 @@ const Container = styled('div', {
   width: '100vw',
   height: '100vh',
   backgroundColor: '$gray900',
-  display: 'flex',
-  justifyContent: 'center',
+  display: 'grid',
+  placeItems: 'center',
 });
 
 export default function Dashboard() {

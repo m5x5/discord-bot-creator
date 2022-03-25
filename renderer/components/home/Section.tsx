@@ -11,7 +11,6 @@ const Container = styled('div', {
   width: 'clamp(400px, 80vw, 800px)',
   height: 'fit-content',
   borderRadius: '$1',
-  marginTop: '10rem',
   padding: '$7',
 
   '> h4': {

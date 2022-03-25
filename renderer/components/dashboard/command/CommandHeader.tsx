@@ -20,11 +20,11 @@ export default function DashboardWindowHeader() {
   const { handler: command, updateHandler } = useDashboardContext();
 
   const onChangeComType = (e) => {
-    updateHandler({ comType: e.target.value });
+    updateHandler({ comType: e.value });
   };
 
   const onChangeRestriction = (e) => {
-    updateHandler({ restriction: e.target.value });
+    updateHandler({ restriction: e.value });
   };
 
   const comTypes = [
