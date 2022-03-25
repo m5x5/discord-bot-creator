@@ -5,7 +5,10 @@ import { useDashboardContext } from '../DashboardContext';
 import HandlerNameInput from '../handlers/HandlerNameInput';
 import PermissionSelect from './Header/PermissionSelect';
 
-const Container = styled('div', {});
+const Container = styled('div', {
+  maxWidth: '100%',
+  padding: '0',
+});
 
 const Group = styled('div', {
   marginBottom: '$4',

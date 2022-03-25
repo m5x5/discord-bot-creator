@@ -8,8 +8,8 @@ import { styled } from '../../../stitches.config';
 import { useDashboardContext } from '../DashboardContext';
 
 const Item = styled('div', {
-  width: '3rem',
-  height: '3rem',
+  width: '$space$6',
+  height: '$space$6',
   padding: '0.6rem 0.6rem',
   cursor: 'pointer',
 

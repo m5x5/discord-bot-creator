@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import { Form } from 'react-bootstrap';
+import Switch from 'rc-switch';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
 import Button from '../../core/Button';
@@ -88,35 +88,25 @@ export default function SettingsView() {
             ></a>
           </p>
         </div>
-        <Form.Check
-          type="switch"
-          label="Run Bot on Save"
+        <Switch
+          title="Restart Automatically"
           checked={!!settings?.autoRestart}
-          onChange={(e) =>
-            setSettings({ ...settings, autoRestart: e.target.checked })
-          }
-          className="mb-3"
+          onChange={(b) => setSettings({ ...settings, autoRestart: b })}
         />
-        <Form.Check
-          type="switch"
-          label="Case Sensitive"
+        <Switch
+          title="Case Sensitive"
           checked={settings?.checked === 'true' || false}
-          onChange={(e) =>
+          onChange={(b) =>
             setSettings({
               ...settings,
-              settings: e.target.checked ? 'true' : 'false',
+              settings: b ? 'true' : 'false',
             })
           }
-          className="mb-3"
         />
-        <Form.Check
-          type="switch"
-          label="Toggle Hints"
+        <Switch
+          title="Show Hints"
           checked={settings?.toggleHints !== false}
-          onChange={(e) =>
-            setSettings({ ...settings, toggleHints: e.target.checked })
-          }
-          className="mb-3"
+          onChange={(b) => setSettings({ ...settings, toggleHints: b })}
         />
       </form>
       <Button onClick={saveSettings} variant="success">

@@ -10,7 +10,7 @@ const Item = styled('div', {
   display: 'flex',
   flexFlow: 'column',
   gap: '$2',
-  width: '100%',
+  maxWidth: '100%',
   borderRadius: '$1',
   border: '1px solid $gray900',
   padding: '$2 $3',

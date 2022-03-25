@@ -158,6 +158,7 @@ export const globalStyles = globalCss({
   body: {
     backgroundColor: '$gray800 !important',
     fontFamily: 'Outfit !important',
+    margin: '0',
   },
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: '$sans',

@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomeProvider } from '../components/home/HomeContext';
 import { globalStyles } from '../stitches.config';
 

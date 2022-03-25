@@ -8,24 +8,17 @@ import Sidebar from './sidebar/index';
 
 const Container = styled('div', {
   display: 'grid',
-  flexFlow: 'column',
   margin: '0',
   darkenedColor2: '$gray800',
-  fontFamily: '$sans',
-  gridTemplateRows: 'auto auto 1fr',
-  gridTemplateColumns: '1fr',
-
-  '@bp1': {
-    flexFlow: 'row',
-    padding: 'inherit',
-    gridTemplateColumns: 'auto 1fr 6fr',
-    gridTemplateRows: '1fr',
-  },
+  flexFlow: 'row',
+  gridTemplateColumns: 'auto auto 6fr',
+  gridTemplateRows: '1fr',
+  maxWidth: '100vw',
 });
 
 const ViewContainer = styled('div', {
   padding: '$4',
-  width: '100%',
+  width: '90%',
 });
 
 export default function DashboardWindow() {
