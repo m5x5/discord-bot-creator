@@ -2,12 +2,14 @@ import { ipcRenderer } from 'electron';
 import { useEffect, useState } from 'react';
 import { Card, Container } from 'react-bootstrap';
 import Button from '../../core/Button';
+import { useDashboardContext } from '../DashboardContext';
 
 export default function LogView() {
+  const { errors } = useDashboardContext();
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    const listener = (event, logs = []) => {
+    const listener = (_e, logs = []) => {
       setLogs(logs);
     };
 
@@ -28,12 +30,13 @@ export default function LogView() {
   };
 
   return (
-    <Container className="d-flex flex-column mt-auto h-100">
-      <div className="mt-auto">
+    <Container>
+      <div>
         {logs.map((log, i) => (
-          <Card key={i} className="p-3 mb-2 align-self-end">
-            {log}
-          </Card>
+          <Card key={i}>{log}</Card>
+        ))}
+        {errors.map((error, i) => (
+          <Card key={i}>{error.message}</Card>
         ))}
       </div>
       <Button onClick={onClear}>Clear</Button>
