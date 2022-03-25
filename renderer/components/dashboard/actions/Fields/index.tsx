@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Editor from './Code';
 import ColorField from './Color';
 import CommentField from './Comment';
@@ -50,14 +49,10 @@ export default function FieldManager({ fields, fieldValues, form }) {
       }
 
       if (config.type === 'code') {
-        return (
-          <Editor key={field} config={config} value={fieldValues[field]} />
-        );
+        return <Editor key={field} value={fieldValues[field]} />;
       }
       if (config.type === 'color') {
-        return (
-          <ColorField key={field} config={config} value={fieldValues[field]} />
-        );
+        return <ColorField key={field} value={fieldValues[field]} />;
       }
       if (config.type === 'member') {
         return (
@@ -149,8 +144,3 @@ export default function FieldManager({ fields, fieldValues, form }) {
     </>
   );
 }
-
-FieldManager.propTypes = {
-  fields: PropTypes.arrayOf(PropTypes.string),
-  fieldValues: PropTypes.object,
-};

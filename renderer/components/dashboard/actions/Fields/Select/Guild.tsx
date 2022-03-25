@@ -2,7 +2,6 @@ import Select from '.';
 
 type Props = {
   field: string;
-  children: React.ReactNode;
   [key: string]: any;
 };
 

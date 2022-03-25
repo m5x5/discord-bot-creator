@@ -1,21 +1,19 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { FormGroup } from 'react-bootstrap';
 import Label from '../../../core/Label';
 import { useDashboardContext } from '../../DashboardContext';
 
-export default function CommentField({ value }) {
+export default function ColorField({ value }) {
   const { updateField } = useDashboardContext();
 
-  const onChange = (e) => {
-    updateField('comment', e.target.value);
-  };
+  const onChange = (e) => updateField('color', e.target.value);
 
   return (
-    <FormGroup className="mb-3">
-      <Label>Comment</Label>
+    <FormGroup>
+      <Label>Color</Label>
       <br />
-      <textarea
+      <input
+        title="Color"
         type="color"
         value={value}
         onChange={onChange}
@@ -24,7 +22,3 @@ export default function CommentField({ value }) {
     </FormGroup>
   );
 }
-
-CommentField.propTypes = {
-  value: PropTypes.string,
-};

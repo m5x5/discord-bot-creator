@@ -32,11 +32,13 @@ export default function ActionForm({ show, isEvent, onHide }) {
     const glob = evalInit(actionSchema.init, action, isEvent);
 
     actionSchema.fields?.forEach((field) => {
-      let elem = document.getElementById(field);
+      let elem = document.getElementById(field) as HTMLInputElement;
       if (!elem) return;
       elem.value = action[field];
 
       const changeFunction = elem.onchange;
+
+      ///@ts-ignore
       elem.onchange = '';
 
       const listener = (e) => {

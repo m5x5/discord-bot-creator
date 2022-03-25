@@ -5,7 +5,6 @@ import { useDashboardContext } from '../../../DashboardContext';
 
 type Props = {
   field: string;
-  children: React.ReactNode;
   [key: string]: any;
 };
 
