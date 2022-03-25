@@ -12,6 +12,14 @@ const Container = styled('div', {
   padding: '0.5rem 1rem',
   borderRadius: '$1',
   color: '$gray100',
+
+  '> .errors': {
+    backgroundColor: '$danger',
+    fontSize: '$1',
+    padding: '0 $1',
+    borderRadius: '$1',
+  },
+
   variants: {
     color: {
       active: {
@@ -43,7 +51,9 @@ export default function SidebarListItem({ d, i, ...props }: Props) {
     <Container {...props}>
       <span dangerouslySetInnerHTML={{ __html: d?.name }} className="w-100" />
       {errors.filter((e) => e.handlerIndex === i).length ? (
-        <div>{errors.filter((e) => e.handlerIndex === i).length}</div>
+        <div className="errors">
+          {errors.filter((e) => e.handlerIndex === i).length}
+        </div>
       ) : null}
     </Container>
   );
