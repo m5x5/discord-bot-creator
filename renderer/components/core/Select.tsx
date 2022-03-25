@@ -1,12 +1,9 @@
-import ReactSelect from 'react-select';
+import ReactSelect, { Props } from 'react-select';
 import { config } from '../../stitches.config';
 
 const colors = config.theme.colors;
 
-export default function Select(props: any) {
-  const handleChange = ({ value }) => {
-    props.onChange?.(value);
-  };
+export default function Select(props: Props) {
   return (
     <ReactSelect
       {...props}
@@ -64,8 +61,7 @@ export default function Select(props: any) {
           fontWeight: 400,
         }),
       }}
-      onChange={handleChange}
-      // formatOptionLabel={(option) => option?.label + option?.tag}
+      onChange={props.onChange}
     />
   );
 }

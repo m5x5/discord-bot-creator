@@ -16,8 +16,10 @@ export default function ActionList() {
 
   return (
     <div>
-      <Label>Actions</Label>
-      <ActionDropdown name={action.name || ''} className="mb-4" create />
+      <div>
+        <Label>Actions</Label>
+        <ActionDropdown create />
+      </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" ignoreContainerClipping>
           {(provided) => (
