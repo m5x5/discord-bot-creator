@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { evalHTML, evalInit, evalListener } from '../../../lib/runInContext';
@@ -84,7 +83,7 @@ export default function ActionForm({ show, isEvent, onHide }) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <ActionDropdown name={action.name} />
+          <ActionDropdown />
         </Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ height: '60vh', overflowY: 'scroll' }}>
@@ -107,9 +106,3 @@ export default function ActionForm({ show, isEvent, onHide }) {
     </Modal>
   );
 }
-
-ActionForm.propTypes = {
-  show: PropTypes.bool,
-  isEvent: PropTypes.bool,
-  onHide: PropTypes.func,
-};

@@ -17,7 +17,11 @@ const Container = styled('div', {
   },
 });
 
-export default function ActionDropdown({ create }) {
+type Props = {
+  create?: boolean;
+};
+
+export default function ActionDropdown({ create }: Props) {
   const { actionSchemas, updateAction, addAction } = useDashboardContext();
 
   const select = (selected) => {

@@ -37,96 +37,100 @@ export default function FieldManager({ fields, fieldValues, form }) {
       console.error('Invalid JSON.', form);
       return null;
     }
-    return Object.keys(form).map((field) => {
-      const config = form[field];
-      if (config.if) {
-        const fi = config.if;
-        if (typeof fi.greaterThan !== 'undefined') {
-          if (fieldValues[fi.field] <= fi.greaterThan) {
-            return null;
+    return (
+      <>
+        {Object.keys(form).map((field) => {
+          const config = form[field];
+          if (config.if) {
+            const fi = config.if;
+            if (typeof fi.greaterThan !== 'undefined') {
+              if (fieldValues[fi.field] <= fi.greaterThan) {
+                return null;
+              }
+            }
           }
-        }
-      }
 
-      if (config.type === 'code') {
-        return <Editor key={field} value={fieldValues[field]} />;
-      }
-      if (config.type === 'color') {
-        return <ColorField key={field} value={fieldValues[field]} />;
-      }
-      if (config.type === 'member') {
-        return (
-          <SelectMember
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-          />
-        );
-      }
-      if (config.type === 'guild') {
-        return (
-          <SelectGuild
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-          />
-        );
-      }
-      if (config.type === 'variable') {
-        return (
-          <InputVariable
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-          />
-        );
-      }
-      if (config.type === 'text') {
-        return (
-          <Input
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-          />
-        );
-      }
-      if (config.type === 'text') {
-        return (
-          <Input
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-            type="number"
-          />
-        );
-      }
-      if (config.type === 'textarea') {
-        return (
-          <Textarea
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-            type="textarea"
-          />
-        );
-      }
-      if (config.type === 'channel') {
-        return (
-          <SelectChannel
-            key={field}
-            config={config}
-            field={field}
-            value={fieldValues[field]}
-          />
-        );
-      }
-    });
+          if (config.type === 'code') {
+            return <Editor key={field} value={fieldValues[field]} />;
+          }
+          if (config.type === 'color') {
+            return <ColorField key={field} value={fieldValues[field]} />;
+          }
+          if (config.type === 'member') {
+            return (
+              <SelectMember
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'guild') {
+            return (
+              <SelectGuild
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'variable') {
+            return (
+              <InputVariable
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'text') {
+            return (
+              <Input
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'text') {
+            return (
+              <Input
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+                type="number"
+              />
+            );
+          }
+          if (config.type === 'textarea') {
+            return (
+              <Textarea
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+                type="textarea"
+              />
+            );
+          }
+          if (config.type === 'channel') {
+            return (
+              <SelectChannel
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+        })}
+      </>
+    );
   }
   return (
     <>
