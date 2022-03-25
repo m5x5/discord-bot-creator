@@ -36,7 +36,7 @@ const renderTooltip = (error) => (props) =>
     </Tooltip>
   );
 
-export default function ActionItem({ action, index, onSelect }) {
+export default function ActionItem({ action, index }) {
   const {
     removeAction,
     updateActionIndex,
@@ -67,11 +67,7 @@ export default function ActionItem({ action, index, onSelect }) {
         overlay={renderTooltip(error?.message)}
         show={!!error}
       >
-        <Item
-          className={error ? 'border-danger' : ''}
-          onSelect={() => onSelect(index)}
-          onClick={select}
-        >
+        <Item className={error ? 'border-danger' : ''} onClick={select}>
           <p>{action?.name}</p>
           <CloseButton onClick={remove} />
         </Item>
