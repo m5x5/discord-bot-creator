@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { styled } from '../../stitches.config';
 import Button from '../core/Button';
+import Spinner from '../core/Spinner';
 import FolderList from './folder/List';
 
 const Container = styled('div', {
@@ -13,14 +14,19 @@ const Container = styled('div', {
   borderRadius: '$1',
   padding: '$7',
 
-  '> h4': {
-    color: '$gray600',
-    marginBottom: '0.1rem',
-  },
-
   '> h1': {
     marginBottom: '$7',
+    marginTop: '$2',
   },
+});
+
+const Subtitle = styled('div', {
+  color: '$gray600',
+  fontWeight: '500',
+  display: 'flex',
+  justifyContent: 'start',
+  alignItems: 'center',
+  gap: '$2',
 });
 
 export default function Section() {
@@ -37,8 +43,13 @@ export default function Section() {
     ipcRenderer.send('chooseDirectory', folder);
     ipcRenderer.once('chooseDirectory', () => {
       router.push(`/dashboard`);
-      setOpeningFolder('');
     });
+  };
+
+  const getName = (path: string) => {
+    path = path.replaceAll(/\\/g, '/');
+    console.log('path', path);
+    return path.split('/').pop();
   };
 
   const pickFolder = (): void => {
@@ -50,17 +61,27 @@ export default function Section() {
 
   return (
     <Container>
-      <h4>Welcome to</h4>
-      <h1>Discord Bot Creator</h1>
-      {/* <BotList /> */}
-      <div className="align-items-stretch">
-        <FolderList setSettings={setSettings} />
-        <div>
-          <Button onClick={pickFolder} className="mt-3">
-            Add Bot
-          </Button>
+      <Subtitle>
+        {openingFolder ? (
+          <>
+            <Spinner inline={true} size={'small'} />
+            Opening
+          </>
+        ) : (
+          'Welcome to'
+        )}
+      </Subtitle>
+      <h1>{openingFolder ? getName(openingFolder) : 'Discord Bot Creator'}</h1>
+      {!openingFolder && (
+        <div className="align-items-stretch">
+          <FolderList setSettings={setSettings} />
+          <div>
+            <Button onClick={pickFolder} className="mt-3">
+              Add Bot
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </Container>
   );
 }

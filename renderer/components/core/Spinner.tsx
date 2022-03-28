@@ -11,7 +11,8 @@ const spin = keyframes({
 });
 
 const Spinner = styled('div', {
-  borderBottom: '3px solid $success',
+  border: '3px solid $gray600',
+  borderBottom: '3px dashed $success',
   height: '$space$6',
   width: '$space$6',
   borderRadius: '50%',
@@ -28,6 +29,20 @@ const Spinner = styled('div', {
       },
       info: {
         borderBottom: '3px solid $info',
+      },
+    },
+    inline: {
+      true: {
+        display: 'inline-block',
+      },
+      false: {
+        display: 'block',
+      },
+    },
+    size: {
+      small: {
+        height: '$space$4',
+        width: '$space$4',
       },
     },
   },
