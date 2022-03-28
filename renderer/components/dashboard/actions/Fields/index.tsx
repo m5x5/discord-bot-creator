@@ -24,13 +24,15 @@ export const SUPPORTED_FIELDS = [
   'iffalse',
   'storage',
   'iffalseVal',
+  'fieldName',
+  'inline',
 ];
 export const fieldsSupported = (fields = []) => {
   return fields.every((field) => SUPPORTED_FIELDS.includes(field));
 };
 
 export default function FieldManager({ fields, fieldValues, form }) {
-  if (form) {
+  if (form && form !== 'undefined') {
     try {
       form = JSON.parse(form);
     } catch {
@@ -86,7 +88,7 @@ export default function FieldManager({ fields, fieldValues, form }) {
               />
             );
           }
-          if (config.type === 'text') {
+          if (['text', 'fieldName'].includes(config.type)) {
             return (
               <Input
                 key={field}
@@ -134,7 +136,7 @@ export default function FieldManager({ fields, fieldValues, form }) {
   }
   return (
     <>
-      {fields.map((field) => {
+      {fields.map((field: string) => {
         if (field === 'code') {
           return <Editor key={field} value={fieldValues[field]} />;
         }

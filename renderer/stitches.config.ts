@@ -164,6 +164,10 @@ export const globalStyles = globalCss({
     fontFamily: '$sans',
   },
 
+  input: {
+    boxSizing: 'border-box',
+  },
+
   '::-webkit-scrollbar ': {
     width: '8px',
   },

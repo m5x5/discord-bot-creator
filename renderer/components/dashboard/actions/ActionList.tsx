@@ -5,7 +5,7 @@ import ActionDropdown from './ActionDropdown';
 import ActionItem from './ActionListItem';
 
 export default function ActionList() {
-  const { actions, reorderAction, action } = useDashboardContext();
+  const { actions, reorderAction } = useDashboardContext();
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
