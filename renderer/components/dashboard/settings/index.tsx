@@ -1,10 +1,10 @@
 import { ipcRenderer } from 'electron';
-import Switch from 'rc-switch';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
 import Button from '../../core/Button';
 import Input from '../../core/Input';
 import Label from '../../core/Label';
+import Switch from '../../core/Switch';
 
 const Container = styled('div', {
   display: 'block',
