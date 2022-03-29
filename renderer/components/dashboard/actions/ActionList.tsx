@@ -1,8 +1,21 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { styled } from '../../../stitches.config';
 import Label from '../../core/Label';
 import { useDashboardContext } from '../DashboardContext';
 import ActionDropdown from './ActionDropdown';
 import ActionItem from './ActionListItem';
+
+const Flexbox = styled('div', {
+  display: 'flex',
+  flexFlow: 'column',
+  gap: '1rem',
+});
+
+const List = styled('div', {
+  display: 'flex',
+  flexFlow: 'column',
+  gap: '0.5rem',
+});
 
 export default function ActionList() {
   const { actions, reorderAction } = useDashboardContext();
@@ -15,7 +28,7 @@ export default function ActionList() {
   };
 
   return (
-    <div>
+    <Flexbox>
       <div>
         <Label>Actions</Label>
         <ActionDropdown create />
@@ -23,7 +36,7 @@ export default function ActionList() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" ignoreContainerClipping>
           {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
+            <List {...provided.droppableProps} ref={provided.innerRef}>
               {actions.map((action, i) => (
                 <Draggable
                   key={'key-' + action.name + '-' + i}
@@ -44,10 +57,10 @@ export default function ActionList() {
                 </Draggable>
               ))}
               {provided.placeholder}
-            </div>
+            </List>
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+    </Flexbox>
   );
 }

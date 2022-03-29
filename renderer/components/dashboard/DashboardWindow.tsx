@@ -18,7 +18,7 @@ const Container = styled('div', {
 
 const ViewContainer = styled('div', {
   padding: '$4',
-  width: '90%',
+  boxSizing: 'border-box',
 });
 
 export default function DashboardWindow() {
