@@ -6,6 +6,7 @@ import InputVariable from './Input/Variable';
 import SelectChannel from './Select/Channel';
 import SelectGuild from './Select/Guild';
 import SelectMember from './Select/Member';
+import Switch from './Switch';
 import Textarea from './Textarea';
 
 export const SUPPORTED_FIELDS = [
@@ -128,6 +129,11 @@ export default function FieldManager({ fields, fieldValues, form }) {
                 field={field}
                 value={fieldValues[field]}
               />
+            );
+          }
+          if (config.type === 'checkbox') {
+            return (
+              <Switch key={field} field={field} value={fieldValues[field]} />
             );
           }
         })}
