@@ -5,24 +5,25 @@ type Props = {
   [key: string]: any;
 };
 
-export default function SelectChannel({
+export default function SelectStorage({
   field,
   isEvent,
   config,
   ...props
 }: Props) {
-  return (
-    <Select {...props} config={config} field={field}>
-      {!isEvent && (
-        <>
-          <option value="0">Same Channel</option>
-          <option value="1">Mentioned Channel</option>
-        </>
-      )}
-      <option value="2">Default Channel</option>
-      <option value="3">Temp Variable</option>
-      <option value="4">Server Variable</option>
-      <option value="5">Global Variable</option>
-    </Select>
-  );
+  const options = [
+    { value: '2', label: 'Default Channel' },
+    { value: '3', label: 'Temp Variable' },
+    { value: '4', label: 'Server Variable' },
+    { value: '5', label: 'Global Variable' },
+  ];
+
+  if (isEvent) {
+    options.unshift(
+      { value: '0', label: 'Same Channel' },
+      { value: '1', label: 'Mentioned Channel' }
+    );
+  }
+
+  return <Select {...props} config={config} field={field} options={options} />;
 }

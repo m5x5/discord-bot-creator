@@ -1,5 +1,6 @@
 import { styled } from '../../../../../stitches.config';
 import Label from '../../../../core/Label';
+import Select from '../../../../core/Select';
 import { useDashboardContext } from '../../../DashboardContext';
 
 const Container = styled('div', {
@@ -20,7 +21,7 @@ const Container = styled('div', {
   },
 });
 
-export default function Select({ field, children, config, ...props }) {
+export default function SelectField({ field, options = [], config, ...props }) {
   const { updateField } = useDashboardContext();
 
   const onChange = (e) => {
@@ -30,9 +31,7 @@ export default function Select({ field, children, config, ...props }) {
   return (
     <Container display={config.inline ? 'inline' : 'block'}>
       <Label>{config.title}</Label>
-      <select {...props} onChange={onChange}>
-        {children}
-      </select>
+      <Select {...props} onChange={onChange} options={options} />
     </Container>
   );
 }

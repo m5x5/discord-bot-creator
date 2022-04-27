@@ -3,9 +3,9 @@ import ColorField from './Color';
 import CommentField from './Comment';
 import Input from './Input';
 import InputVariable from './Input/Variable';
-import SelectChannel from './Select/Channel';
 import SelectGuild from './Select/Guild';
 import SelectMember from './Select/Member';
+import SelectStorage from './Select/Storage';
 import Switch from './Switch';
 import Textarea from './Textarea';
 
@@ -123,7 +123,17 @@ export default function FieldManager({ fields, fieldValues, form }) {
           }
           if (config.type === 'channel') {
             return (
-              <SelectChannel
+              <SelectStorage
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'storage') {
+            return (
+              <SelectStorage
                 key={field}
                 config={config}
                 field={field}

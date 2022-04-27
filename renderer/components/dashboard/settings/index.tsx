@@ -2,6 +2,7 @@ import { ipcRenderer } from 'electron';
 import useSettings from '../../../lib/useSettings';
 import { styled } from '../../../stitches.config';
 import Button from '../../core/Button';
+import { Description } from '../../core/Description';
 import Input from '../../core/Input';
 import Label from '../../core/Label';
 import Switch from '../../core/Switch';
@@ -59,7 +60,7 @@ export default function SettingsView() {
             onChange={changeToken}
             placeholder="e.g.: NzI3ODcyOTg0NTc1OTAxNzg2.XvyKig.4eiNtg8CGOkT1Www5sRngSLSJ30"
           />
-          <p>
+          <Description>
             Get your token from the{' '}
             <a
               rel="noopener noreferrer"
@@ -69,7 +70,7 @@ export default function SettingsView() {
             >
               bot dashboard
             </a>
-          </p>
+          </Description>
         </div>
         <div className="mb-3">
           <Label>Separator</Label>
