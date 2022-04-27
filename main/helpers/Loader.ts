@@ -14,10 +14,14 @@ export default class Loader {
     this.actions = {};
   }
   static getSettings(folder: string) {
-    return fs.readFileSync(
-      path.resolve(folder, './data/settings.json'),
-      'utf8'
-    );
+    if (fs.existsSync(path.resolve(folder, './data/settings.json'))) {
+      return fs.readFileSync(
+        path.resolve(folder, './data/settings.json'),
+        'utf8'
+      );
+    } else {
+      return '{}';
+    }
   }
   saveSettings(settings) {
     if (!Object.keys(settings).length) return;

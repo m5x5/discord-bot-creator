@@ -35,3 +35,9 @@ export const removeInvalidFolders = (folders) => {
     }
   });
 };
+
+export const removeFolder = (folder) => {
+  let folders = getFolders();
+  folders = folders.filter((f) => f !== folder);
+  store.set('folders', folders);
+};

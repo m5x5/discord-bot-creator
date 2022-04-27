@@ -30,7 +30,9 @@ export function HomeProvider({ children }) {
       folders,
     });
   };
-  const removeFolder = (folder: string): void => {
+  const removeFolder = async (folder: string): Promise<void> => {
+    await ipcRenderer.invoke('removeDirectory', folder);
+
     setState({
       ...state,
       folders: state.folders.filter((f) => f !== folder),

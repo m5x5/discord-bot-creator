@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import { dialog, ipcMain } from 'electron';
 import { log } from 'electron-log';
 import { copyFiles } from './copy-file';
-import { addFolder, getFolders } from './folders';
+import { addFolder, getFolders, removeFolder } from './folders';
 import { Runner } from './index';
 import Loader from './Loader';
 import { clearLogs } from './logs';
@@ -34,6 +34,11 @@ ipcMain.on('directoryDialog', async (event) => {
 
 ipcMain.on('getLastDirectories', (event) => {
   event.sender.send('getLastDirectories', getFolders());
+});
+
+ipcMain.handle('removeDirectory', (event, filePath) => {
+  removeFolder(filePath);
+  event.sender.send('removeDirectory', getFolders());
 });
 
 ipcMain.on('chooseDirectory', async (event, folder) => {
