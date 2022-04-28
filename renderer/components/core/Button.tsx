@@ -8,6 +8,7 @@ const Button = styled('button', {
   fontWeight: '500',
   fontSize: '$2',
   fontFamily: '$sans',
+  cursor: 'pointer',
   variants: {
     variant: {
       primary: {
