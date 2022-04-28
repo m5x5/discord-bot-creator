@@ -1,4 +1,5 @@
 import { styled } from '../../../../../stitches.config';
+import { Description } from '../../../../core/Description';
 import Input from '../../../../core/Input';
 import Label from '../../../../core/Label';
 import { useDashboardContext } from '../../../DashboardContext';
@@ -24,13 +25,6 @@ const Container = styled('div', {
       },
     },
   },
-});
-
-const Description = styled('span', {
-  fontFamily: '$sans',
-  fontSize: '0.8rem',
-  color: '$gray600',
-  display: 'block',
 });
 
 export default function InputVariable({

@@ -23,6 +23,7 @@ const Title = styled('span', {
 
 export default function SettingsView() {
   const [settings, setSettings] = useSettings();
+  const tokenMissing = !settings?.token?.length;
 
   const changePrefix = (e) => {
     setSettings({ ...settings, tag: e.target.value });
@@ -60,9 +61,10 @@ export default function SettingsView() {
             value={settings?.token || ''}
             onChange={changeToken}
             placeholder="e.g.: NzI3ODcyOTg0NTc1OTAxNzg2.XvyKig.4eiNtg8CGOkT1Www5sRngSLSJ30"
+            error={tokenMissing}
           />
           <Description>
-            Get your token from the{' '}
+            You need to have a token to run your bot. Get your token from the{' '}
             <Link
               rel="noopener noreferrer"
               target="_blank"
@@ -73,7 +75,7 @@ export default function SettingsView() {
             </Link>
           </Description>
         </div>
-        <div className="mb-3">
+        <div>
           <Label>Separator</Label>
           <Input
             type="text"
@@ -81,14 +83,6 @@ export default function SettingsView() {
             onChange={changeSeparator}
             placeholder="\\s+"
           />
-          <p>
-            <a
-              rel="noopener noreferrer"
-              target="_blank"
-              href="https://discord.com/developers/applications/"
-              title="Applications Overview"
-            ></a>
-          </p>
         </div>
         <Switch
           title="Restart Automatically"

@@ -1,4 +1,5 @@
 import { styled } from '../../../../../stitches.config';
+import { Description } from '../../../../core/Description';
 import Label from '../../../../core/Label';
 import MyTextarea from '../../../../core/Textarea';
 import { useDashboardContext } from '../../../DashboardContext';
@@ -22,13 +23,6 @@ const Container = styled('div', {
       },
     },
   },
-});
-
-const Description = styled('span', {
-  fontFamily: '$sans',
-  fontSize: '0.8rem',
-  color: '$gray600',
-  display: 'block',
 });
 
 export default function Textarea({ field, config, isEvent, ...props }: Props) {

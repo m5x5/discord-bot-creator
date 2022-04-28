@@ -21,15 +21,24 @@ const ViewContainer = styled('div', {
   boxSizing: 'border-box',
   height: '100vh',
   overflow: 'auto',
+
+  variants: {
+    twoColumn: {
+      true: {
+        gridColumn: '2 / span 2',
+      },
+    },
+  },
 });
 
 export default function DashboardWindow() {
   const { mode } = useDashboardContext();
+  const isTwoColumnView = ['logs', 'settings'].includes(mode);
 
   return (
     <Container>
       <Sidebar />
-      <ViewContainer>
+      <ViewContainer twoColumn={isTwoColumnView}>
         {(() => {
           switch (mode) {
             case 'event':

@@ -1,6 +1,6 @@
 import { styled } from '../../stitches.config';
 
-const Container = styled('input', {
+const Input = styled('input', {
   fontFamily: '$sans',
   fontSize: '$3',
   select: 'focus-within',
@@ -27,10 +27,20 @@ const Container = styled('input', {
       full: {
         width: '100%',
       },
+      auto: {
+        width: 'auto',
+      },
     },
+    error: {
+      true: {
+        borderColor: '$danger',
+      },
+    },
+  },
+
+  defaultVariants: {
+    width: 'full',
   },
 });
 
-export default function Input(props) {
-  return <Container {...props} />;
-}
+export default Input;
