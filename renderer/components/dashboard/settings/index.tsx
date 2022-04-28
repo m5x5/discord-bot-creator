@@ -5,6 +5,7 @@ import Button from '../../core/Button';
 import { Description } from '../../core/Description';
 import Input from '../../core/Input';
 import Label from '../../core/Label';
+import Link from '../../core/Link';
 import Switch from '../../core/Switch';
 
 const Container = styled('div', {
@@ -62,14 +63,14 @@ export default function SettingsView() {
           />
           <Description>
             Get your token from the{' '}
-            <a
+            <Link
               rel="noopener noreferrer"
               target="_blank"
               href="https://discord.com/developers/applications/"
               title="Discord Applications Overview"
             >
               bot dashboard
-            </a>
+            </Link>
           </Description>
         </div>
         <div className="mb-3">
