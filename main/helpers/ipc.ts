@@ -46,8 +46,7 @@ ipcMain.on('chooseDirectory', async (event, folder) => {
 
   // Populate with files
   const invalidFiles = BOT_FILES.filter((file) => !validateFile(folder, file));
-  log(invalidFiles);
-  await copyFiles(folder, invalidFiles);
+  await copyFiles(folder);
 
   loader = new Loader({ filePath: folder });
   runner = new Runner({ filePath: folder });

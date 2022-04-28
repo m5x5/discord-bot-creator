@@ -1,4 +1,4 @@
-import DiscordJS from "discord.js";
+import DiscordJS from 'discord.js';
 
 const { Client } = DiscordJS;
 
@@ -31,7 +31,7 @@ export default class Bot {
       DiscordJS.Intents.FLAGS;
     this.bot = new Client({
       intents: [DIRECT_MESSAGES, GUILDS, GUILD_MESSAGES, GUILD_VOICE_STATES],
-      partials: ["CHANNEL"],
+      partials: ['CHANNEL'],
     });
   }
 
@@ -41,8 +41,8 @@ export default class Bot {
 
   onRawData(packet) {
     if (
-      packet.t !== "MESSAGE_REACTION_ADD" ||
-      packet.t !== "MESSAGE_REACTION_REMOVE"
+      packet.t !== 'MESSAGE_REACTION_ADD' ||
+      packet.t !== 'MESSAGE_REACTION_REMOVE'
     )
       return;
 
@@ -55,16 +55,16 @@ export default class Bot {
         ? `${packet.d.emoji.name}:${packet.d.emoji.id}`
         : packet.d.emoji.name;
       const reaction = message.reactions.cache.get(emoji);
-      if (packet.t === "MESSAGE_REACTION_ADD") {
+      if (packet.t === 'MESSAGE_REACTION_ADD') {
         client.emit(
-          "messageReactionAdd",
+          'messageReactionAdd',
           reaction,
           client.users.cache.get(packet.d.user_id)
         );
       }
-      if (packet.t === "MESSAGE_REACTION_REMOVE") {
+      if (packet.t === 'MESSAGE_REACTION_REMOVE') {
         client.emit(
-          "messageReactionRemove",
+          'messageReactionRemove',
           reaction,
           client.users.cache.get(packet.d.user_id)
         );
@@ -74,7 +74,7 @@ export default class Bot {
 
   reformatCommands() {
     const data = this.Files.data.commands || [];
-    this._caseSensitive = this.Files.data.settings.case === "true";
+    this._caseSensitive = this.Files.data.settings.case === 'true';
 
     data.forEach((cmd, i) => this.registerCommand(cmd, i));
   }
@@ -84,11 +84,11 @@ export default class Bot {
 
     command.position = position;
     switch (command.comType) {
-      case "1":
+      case '1':
         return this.$icds.push(command);
-      case "2":
+      case '2':
         return this.$regx.push(command);
-      case "3":
+      case '3':
         return this.$anym.push(command);
       default:
         const name = caseSensitive ? command.name : command.name.toLowerCase();
@@ -109,16 +109,16 @@ export default class Bot {
 
   registerEvent(event, position = 0) {
     if (!event) return;
-    const type = event["event-type"];
+    const type = event['event-type'];
     event.position = position;
     if (!this.$evts[type]) this.$evts[type] = [];
     this.$evts[type].push(event);
   }
 
   initEvents() {
-    this.bot.on("raw", this.onRawData.bind(this));
-    this.bot.on("ready", this.onReady.bind(this));
-    this.bot.on("messageCreate", (msg) => this.onMessage(msg));
+    this.bot.on('raw', this.onRawData.bind(this));
+    this.bot.on('ready', this.onReady.bind(this));
+    this.bot.on('messageCreate', (msg) => this.onMessage(msg));
     this.Events.registerEvents(this.bot);
   }
 
@@ -127,8 +127,7 @@ export default class Bot {
   }
 
   onReady() {
-    if (process.send) process.send("ready");
-    console.log("Bot is ready!");
+    if (process.send) process.send('ready');
     this.restoreVariables();
     this.preformInitialization();
   }
@@ -140,10 +139,10 @@ export default class Bot {
 
   preformInitialization() {
     const bot = this.bot;
-    if (this.$evts["1"]) {
+    if (this.$evts['1']) {
       this.Events.onInitialization(bot);
     }
-    if (this.$evts["3"]) {
+    if (this.$evts['3']) {
       this.Events.setupIntervals(bot);
     }
   }
@@ -162,8 +161,8 @@ export default class Bot {
     this.checkIncludes(msg);
     this.checkRegExps(msg);
     if (msg.author.bot) return;
-    if (this.$evts["2"]) {
-      this.Events.callEvents("2", 1, 0, 2, false, "", msg);
+    if (this.$evts['2']) {
+      this.Events.callEvents('2', 1, 0, 2, false, '', msg);
     }
     const anym = this.$anym;
     for (let i = 0; i < anym.length; i++) {
@@ -187,7 +186,7 @@ export default class Bot {
 
   checkPrefix(content) {
     const prefix = this.Files.data.settings.tag;
-    const separator = this.Files.data.settings.separator || "\\s+";
+    const separator = this.Files.data.settings.separator || '\\s+';
     content = content.split(new RegExp(separator))[0];
     if (content.startsWith(prefix)) {
       return content.substring(prefix.length);
@@ -201,13 +200,13 @@ export default class Bot {
     const icds_len = icds.length;
     for (let i = 0; i < icds_len; i++) {
       if (icds[i] && icds[i].name) {
-        if (text.match(new RegExp("\\b" + icds[i].name + "\\b", "i"))) {
+        if (text.match(new RegExp('\\b' + icds[i].name + '\\b', 'i'))) {
           this.Actions.preformActions(msg, icds[i]);
         } else if (icds[i]._aliases) {
           const aliases = icds[i]._aliases;
           const aliases_len = aliases.length;
           for (let j = 0; j < aliases_len; j++) {
-            if (text.match(new RegExp("\\b" + aliases[j] + "\\b", "i"))) {
+            if (text.match(new RegExp('\\b' + aliases[j] + '\\b', 'i'))) {
               this.Actions.preformActions(msg, icds[i]);
               break;
             }
@@ -224,13 +223,13 @@ export default class Bot {
     const regx_len = regx.length;
     for (let i = 0; i < regx_len; i++) {
       if (regx[i] && regx[i].name) {
-        if (text.match(new RegExp(regx[i].name, "i"))) {
+        if (text.match(new RegExp(regx[i].name, 'i'))) {
           this.Actions.preformActions(msg, regx[i]);
         } else if (regx[i]._aliases) {
           const aliases = regx[i]._aliases;
           const aliases_len = aliases.length;
           for (let j = 0; j < aliases_len; j++) {
-            if (text.match(new RegExp("\\b" + aliases[j] + "\\b", "i"))) {
+            if (text.match(new RegExp('\\b' + aliases[j] + '\\b', 'i'))) {
               this.Actions.preformActions(msg, regx[i]);
               break;
             }

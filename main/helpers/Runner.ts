@@ -2,6 +2,8 @@ import { fork } from 'child_process';
 import { ipcMain } from 'electron';
 import { log } from 'electron-log';
 import path from 'path';
+import { copyFiles } from './copy-file';
+import Loader from './Loader';
 
 export default class Runner {
   filePath: string;
@@ -16,6 +18,11 @@ export default class Runner {
     });
   }
   async run() {
+    const settings = JSON.parse(Loader.getSettings(this.filePath));
+    if (settings?.updateBeforeRun) {
+      await copyFiles(this.filePath);
+    }
+
     return new Promise(async (resolve, reject) => {
       log('Running:', this.filePath);
       if (this.botProcess) await this.stop();

@@ -45,7 +45,7 @@ export default function SettingsView() {
     <Container>
       <Title>Settings</Title>
       <form>
-        <div className="mb-3">
+        <div>
           <Label>Prefix</Label>
           <Input
             type="text"
@@ -54,7 +54,7 @@ export default function SettingsView() {
             placeholder="!"
           />
         </div>
-        <div className="mb-3">
+        <div>
           <Label>Token</Label>
           <Input
             type="text"
@@ -98,6 +98,11 @@ export default function SettingsView() {
               settings: b ? 'true' : 'false',
             })
           }
+        />
+        <Switch
+          title="Update Bot Code before Running"
+          checked={!!settings?.updateBeforeRun}
+          onChange={(b) => setSettings({ ...settings, updateBeforeRun: b })}
         />
         <Switch
           title="Show Hints"
