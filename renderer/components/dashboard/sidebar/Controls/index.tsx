@@ -21,7 +21,11 @@ export default function SidebarBotControls() {
   const [settings] = useSettings();
 
   if (!settings?.token) {
-    return <Button onClick={() => updateMode('settings')}>Add token</Button>;
+    return (
+      <Button onClick={() => updateMode('settings')} width="full" badge={true}>
+        Add token
+      </Button>
+    );
   }
 
   return (

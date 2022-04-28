@@ -41,6 +41,22 @@ const Button = styled('button', {
         width: '100%',
       },
     },
+    badge: {
+      true: {
+        position: 'relative',
+        '&::after': {
+          content: 'attr(data-badge)',
+          position: 'absolute',
+          top: '-0.25rem',
+          right: '-0.25rem',
+          backgroundColor: '$danger',
+          color: '$light',
+          borderRadius: '$2',
+          height: '12px',
+          width: '12px',
+        },
+      },
+    },
   },
   defaultVariants: {
     variant: 'primary',
