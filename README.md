@@ -6,7 +6,7 @@
 
 ---
 
-Welcome to Discord Bot Creator, a **free** open source discord bot creator which is much more powerful than current alternatives. Currently, it's still in development but you can check out the early version using the instructions below. Also feel free to join us on [Discord](https://discord.gg/Z7ybzt2KRr).
+Welcome to Discord Bot Creator, a **free** open source discord bot creator which is much more powerful than current alternatives. Currently, it's still in development but you can check out the early version using the instructions below. Also feel free to join us on [Discord](https://discord.gg/yB4BnAHt).
 
 ## Core Values
 
