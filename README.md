@@ -39,3 +39,7 @@ cd discord-bot-creator
 npm install
 npm run dev
 ```
+
+## Top Sponsor
+
+- [ConnorFTW](https://github.com/ConnorFTW)
