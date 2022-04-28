@@ -19,7 +19,6 @@ const Container = styled('div', {
       },
       block: {
         display: 'block',
-        width: '100%',
       },
     },
   },
@@ -44,10 +43,9 @@ export default function Textarea({ field, config, isEvent, ...props }: Props) {
       <Label>{config.title}</Label>
       <MyTextarea
         {...props}
-        field={field}
         onChange={onChange}
         placeholder={config.placeholder}
-        style={{ width: '100%' }}
+        width="full"
       ></MyTextarea>
       <Description>{config.description}</Description>
     </Container>

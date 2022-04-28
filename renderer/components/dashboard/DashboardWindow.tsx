@@ -19,6 +19,8 @@ const Container = styled('div', {
 const ViewContainer = styled('div', {
   padding: '$4',
   boxSizing: 'border-box',
+  height: '100vh',
+  overflow: 'auto',
 });
 
 export default function DashboardWindow() {
