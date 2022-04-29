@@ -5,25 +5,36 @@ type Props = {
   [key: string]: any;
 };
 
-export default function SelectStorage({
+export default function SelectChannel({
   field,
   isEvent,
   config,
+  value,
   ...props
 }: Props) {
   const options = [
-    { value: '2', label: 'Default Channel' },
     { value: '3', label: 'Temp Variable' },
     { value: '4', label: 'Server Variable' },
     { value: '5', label: 'Global Variable' },
   ];
 
-  if (isEvent) {
+  if (!isEvent) {
     options.unshift(
       { value: '0', label: 'Same Channel' },
       { value: '1', label: 'Mentioned Channel' }
     );
   }
 
-  return <Select {...props} config={config} field={field} options={options} />;
+  const selected = options.find((option) => +option.value === +value);
+
+  return (
+    <Select
+      {...props}
+      config={config}
+      field={field}
+      options={options}
+      value={selected}
+      required={config.required}
+    />
+  );
 }

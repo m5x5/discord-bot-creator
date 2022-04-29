@@ -24,8 +24,8 @@ const Container = styled('div', {
 export default function SelectField({ field, options = [], config, ...props }) {
   const { updateField } = useDashboardContext();
 
-  const onChange = (e) => {
-    updateField(field, e.target.value);
+  const onChange = ({ value }) => {
+    updateField(field, value);
   };
 
   return (

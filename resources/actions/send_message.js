@@ -7,6 +7,7 @@ module.exports = {
       title: 'Channel',
       description: 'The channel to send the message to.',
       inline: true,
+      required: true,
     },
     varName: {
       type: 'variable',

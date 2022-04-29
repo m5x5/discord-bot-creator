@@ -76,8 +76,6 @@ export default function ActionItem({ action, index }) {
   const error = errors.find((e) => {
     return e.handlerIndex === handlerIndex && e.actionIndex === index;
   });
-  console.log(handlerIndex, index);
-  console.log(errors, error);
 
   return (
     <div>

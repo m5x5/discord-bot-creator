@@ -3,7 +3,12 @@ import { config } from '../../stitches.config';
 
 const colors = config.theme.colors;
 
-export default function Select(props: Props) {
+interface ExtendedProps extends Props {
+  required?: boolean;
+}
+
+export default function Select(props: ExtendedProps) {
+  const missingValue = props.required && !props.value;
   return (
     <ReactSelect
       {...props}
@@ -41,10 +46,14 @@ export default function Select(props: Props) {
           ...provided,
           backgroundColor: colors.gray900,
           color: 'white',
-          border: '1px solid rgba(0, 0, 0, 0.3)',
+          border: missingValue
+            ? '1px solid #ed4245'
+            : '1px solid rgba(0, 0, 0, 0.3)',
           fontWeight: 400,
           ':hover': {
-            border: '1px solid rgba(0, 0, 0, 0.3)',
+            border: missingValue
+              ? '1px solid #ed4245'
+              : '1px solid rgba(0, 0, 0, 0.3)',
           },
         }),
 

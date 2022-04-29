@@ -101,12 +101,8 @@ export default class Actions extends Logger {
     if (server?.getDefaultChannel) {
       defaultChannel = server.getDefaultChannel();
     }
-    try {
-      return eval(content);
-    } catch (e) {
-      console.error(e);
-      return false;
-    }
+
+    return eval(content);
   }
 
   /**

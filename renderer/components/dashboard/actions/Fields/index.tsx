@@ -3,6 +3,7 @@ import ColorField from './Color';
 import CommentField from './Comment';
 import Input from './Input';
 import InputVariable from './Input/Variable';
+import SelectChannel from './Select/Channel';
 import SelectGuild from './Select/Guild';
 import SelectMember from './Select/Member';
 import SelectStorage from './Select/Storage';
@@ -47,7 +48,7 @@ export default function FieldManager({ fields, fieldValues, form }) {
           if (config.if) {
             const fi = config.if;
             if (typeof fi.greaterThan !== 'undefined') {
-              if (fieldValues[fi.field] <= fi.greaterThan) {
+              if (+fieldValues[fi.field] <= fi.greaterThan) {
                 return null;
               }
             }
@@ -123,7 +124,7 @@ export default function FieldManager({ fields, fieldValues, form }) {
           }
           if (config.type === 'channel') {
             return (
-              <SelectStorage
+              <SelectChannel
                 key={field}
                 config={config}
                 field={field}
@@ -152,7 +153,7 @@ export default function FieldManager({ fields, fieldValues, form }) {
   }
   return (
     <>
-      {fields.map((field: string) => {
+      {fields?.map((field: string) => {
         if (field === 'code') {
           return <Editor key={field} value={fieldValues[field]} />;
         }
