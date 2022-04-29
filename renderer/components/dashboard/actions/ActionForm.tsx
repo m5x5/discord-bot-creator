@@ -58,7 +58,9 @@ export default function ActionForm({ show, isEvent, onHide }) {
 
   useEffect(() => {
     // show is important because it otherwise would render and set the html when we have the old action selected
-    const isLoading = !actionSchema?.html || !action;
+    const isLoading =
+      !actionSchema?.html || actionSchema.html === 'undefined' || !action;
+    if (!actionSchema?.html) return;
     if (isLoading || (state.html && state.name === action.name) || !show)
       return;
 

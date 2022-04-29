@@ -6,6 +6,7 @@ import InputVariable from './Input/Variable';
 import SelectChannel from './Select/Channel';
 import SelectGuild from './Select/Guild';
 import SelectMember from './Select/Member';
+import SelectMessage from './Select/Message';
 import SelectStorage from './Select/Storage';
 import Switch from './Switch';
 import Textarea from './Textarea';
@@ -30,6 +31,7 @@ export const SUPPORTED_FIELDS = [
   'inline',
 ];
 export const fieldsSupported = (fields = []) => {
+  if (!fields[0]) return true;
   return fields.every((field) => SUPPORTED_FIELDS.includes(field));
 };
 
@@ -125,6 +127,16 @@ export default function FieldManager({ fields, fieldValues, form }) {
           if (config.type === 'channel') {
             return (
               <SelectChannel
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'message') {
+            return (
+              <SelectMessage
                 key={field}
                 config={config}
                 field={field}
