@@ -9,18 +9,29 @@ export default function SelectStorage({
   field,
   isEvent,
   config,
+  value,
   ...props
 }: Props) {
+  const options = [
+    { value: '1', label: 'Temp Variable' },
+    { value: '2', label: 'Server Variable' },
+    { value: '3', label: 'Global Variable' },
+  ];
+
+  if (!isEvent) {
+    options.unshift({ value: '0', label: 'Nothing' });
+  }
+
+  const selected = options.find((option) => +option.value === +value);
+
   return (
-    <Select {...props} config={config} field={field}>
-      {!isEvent && (
-        <>
-          <option value="0">Nothing</option>
-        </>
-      )}
-      <option value="1">Temp Variable</option>
-      <option value="2">Server Variable</option>
-      <option value="3">Global Variable</option>
-    </Select>
+    <Select
+      {...props}
+      config={config}
+      field={field}
+      options={options}
+      value={selected}
+      required={config.required}
+    />
   );
 }

@@ -16,23 +16,22 @@ export default {
     const varName2 = this.evalMessage(data.varName2, cache);
     const embed = this.getVariable(storage2, varName2, cache);
 
-    console.log({ storage, varName, message, content });
-
     if (Array.isArray(message)) {
       this.callListFunc(message, 'edit', [content, embed]).then(() => {
         this.callNextAction(cache);
       });
     } else if (message && message.edit && !message.deleted) {
-      console.log('message is not an array');
       message
         .edit(content, embed)
         .then(() => {
-          console.log('edited');
           this.callNextAction(cache);
         })
         .catch((err) => this.displayError(data, cache, err));
+    } else if (!message) {
+      this.displayError(data, cache, 'Message not found.');
+      this.callNextAction(cache);
     } else {
-      console.log('message is not an array or is deleted');
+      this.displayError(data, cache, 'Message is not editable.');
       this.callNextAction(cache);
     }
   },

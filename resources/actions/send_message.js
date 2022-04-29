@@ -25,12 +25,22 @@ module.exports = {
       title: 'Message',
       placeholder: 'Message',
     },
+    storage: {
+      type: 'storage',
+      title: 'Store Message',
+      description: 'Where do you want to store the message?',
+      inline: true,
+    },
     varName2: {
       type: 'variable',
       title: 'Variable Name',
       description: 'The variable to store the message in.',
       placeholder: 'Variable Name',
       inline: true,
+      if: {
+        field: 'storage',
+        greaterThan: 0,
+      },
     },
     iffalse: {
       type: 'iffalse',

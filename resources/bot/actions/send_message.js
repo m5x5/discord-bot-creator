@@ -6,16 +6,6 @@ export default {
     return [data.varName2, 'Message'];
   },
 
-  fields: [
-    'channel',
-    'varName',
-    'message',
-    'storage',
-    'varName2',
-    'iffalse',
-    'iffalseVal',
-  ],
-
   /** @this {import("../utils/Actions.js").default} */
   action(cache) {
     const data = cache.actions[cache.index];
@@ -25,6 +15,9 @@ export default {
       this.getSendTarget(channel, varName, cache) ||
       this.getSendTarget(0, varName, cache);
     const { message } = data;
+
+    const varName2 = this.evalMessage(data.varName2, cache);
+    const storage = parseInt(data.storage, 10);
 
     if (!target) {
       this.displayError(data, cache, 'You have to select a target channel');
@@ -42,8 +35,6 @@ export default {
       this.callListFunc(target, 'send', [
         this.evalMessage(message, cache),
       ]).then((msg) => {
-        const varName2 = this.evalMessage(data.varName2, cache);
-        const storage = parseInt(data.storage, 10);
         this.storeValue(msg, storage, varName2, cache);
         this.callNextAction(cache);
       });
@@ -51,8 +42,7 @@ export default {
       target
         .send(this.evalMessage(message, cache))
         .then((msg) => {
-          const varName2 = this.evalMessage(data.varName2, cache);
-          const storage = parseInt(data.storage, 10);
+          console.log({ msg, storage, varName2 });
           this.storeValue(msg, storage, varName2, cache);
           this.callNextAction(cache);
         })
