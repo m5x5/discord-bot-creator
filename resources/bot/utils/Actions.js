@@ -1,7 +1,7 @@
-import { GuildMember, Message, User } from "discord.js";
-import fs from "fs";
-import path from "path";
-import Logger from "./Logger.js";
+import { GuildMember, Message, User } from 'discord.js';
+import fs from 'fs';
+import path from 'path';
+import Logger from './Logger.js';
 
 /**
  * @class
@@ -33,7 +33,7 @@ export default class Actions extends Logger {
 
   exists(action) {
     if (!action) return false;
-    return typeof this[action] === "function";
+    return typeof this[action] === 'function';
   }
 
   getLocalFile(url) {
@@ -54,7 +54,7 @@ export default class Actions extends Logger {
           return;
         }
         const item = list[curr++];
-        if (typeof this.dest(item, funcName) === "function") {
+        if (typeof this.dest(item, funcName) === 'function') {
           item[funcName].apply(item, args).then(callItem).catch(callItem);
         } else {
           callItem();
@@ -85,17 +85,17 @@ export default class Actions extends Logger {
     const client = DBM.Bot.bot;
     const bot = DBM.Bot.bot;
     const me = server ? server.me : null;
-    let user = "",
-      member = "",
-      mentionedUser = "",
-      mentionedChannel = "",
-      defaultChannel = "";
+    let user = '',
+      member = '',
+      mentionedUser = '',
+      mentionedChannel = '',
+      defaultChannel = '';
     if (msg) {
       user = msg.author;
       member = msg.member;
       if (msg.mentions) {
-        mentionedUser = msg.mentions.users.first() || "";
-        mentionedChannel = msg.mentions.channels.first() || "";
+        mentionedUser = msg.mentions.users.first() || '';
+        mentionedChannel = msg.mentions.channels.first() || '';
       }
     }
     if (server?.getDefaultChannel) {
@@ -117,11 +117,11 @@ export default class Actions extends Logger {
    * @example `${member.displayName} is cool` => `Michael is cool`
    */
   evalMessage(content, cache) {
-    if (!content) return "";
+    if (!content) return '';
     // If it doesn't have a variable in it, just return the content
     if (!content.match(/\$\{.*\}/im)) return content;
     // Escape backticks for eval
-    return this.eval("`" + content.replace(/`/g, "\\`") + "`", cache);
+    return this.eval('`' + content.replace(/`/g, '\\`') + '`', cache);
   }
 
   initMods() {
@@ -134,8 +134,8 @@ export default class Actions extends Logger {
                 .join(dir, file)
                 .split(path.sep)
                 .slice(-2)
-                .join("/");
-              filePath = "../" + filePath;
+                .join('/');
+              filePath = '../' + filePath;
               const action = (await import(filePath)).default;
               if (action?.action) {
                 this[action.name] = action.action;
@@ -215,12 +215,12 @@ export default class Actions extends Logger {
       } else {
         const remaining = cmd._timeRestriction - Math.floor(diff / 1000);
         Events.callEvents(
-          "38",
+          '38',
           1,
           3,
           2,
           false,
-          "",
+          '',
           msg.member,
           this.generateTimeString(remaining)
         );
@@ -235,34 +235,34 @@ export default class Actions extends Logger {
     const days = Math.floor(remaining / 60 / 60 / 24);
     if (days > 0) {
       remaining -= days * 60 * 60 * 24;
-      times.push(days + (days === 1 ? " day" : " days"));
+      times.push(days + (days === 1 ? ' day' : ' days'));
     }
     const hours = Math.floor(remaining / 60 / 60);
     if (hours > 0) {
       remaining -= hours * 60 * 60;
-      times.push(hours + (hours === 1 ? " hour" : " hours"));
+      times.push(hours + (hours === 1 ? ' hour' : ' hours'));
     }
     const minutes = Math.floor(remaining / 60);
     if (minutes > 0) {
       remaining -= minutes * 60;
-      times.push(minutes + (minutes === 1 ? " minute" : " minutes"));
+      times.push(minutes + (minutes === 1 ? ' minute' : ' minutes'));
     }
     const seconds = Math.floor(remaining);
     if (seconds > 0) {
       remaining -= seconds;
-      times.push(seconds + (seconds === 1 ? " second" : " seconds"));
+      times.push(seconds + (seconds === 1 ? ' second' : ' seconds'));
     }
 
-    let result = "";
+    let result = '';
     if (times.length === 1) {
       result = times[0];
     } else if (times.length === 2) {
-      result = times[0] + " and " + times[1];
+      result = times[0] + ' and ' + times[1];
     } else if (times.length === 3) {
-      result = times[0] + ", " + times[1] + ", and " + times[2];
+      result = times[0] + ', ' + times[1] + ', and ' + times[2];
     } else if (times.length === 4) {
       result =
-        times[0] + ", " + times[1] + ", " + times[2] + ", and " + times[3];
+        times[0] + ', ' + times[1] + ', ' + times[2] + ', and ' + times[3];
     }
     return result;
   }
@@ -270,7 +270,7 @@ export default class Actions extends Logger {
   checkPermissions(msg, permissions) {
     const author = msg.member;
     if (!author) return false;
-    if (permissions === "NONE") return true;
+    if (permissions === 'NONE') return true;
     if (msg.guild.ownerID === author.id) return true;
     return author.permissions.has([permissions]);
   }
@@ -287,6 +287,8 @@ export default class Actions extends Logger {
       msg: msg,
       command: cmd,
     };
+
+    cache.handlerIndex = (cache.command ?? cache.event)?.position;
     if (this.exists(act.name)) {
       try {
         this[act.name](cache);
@@ -294,7 +296,7 @@ export default class Actions extends Logger {
         this.displayError(act, cache, e);
       }
     } else {
-      console.error(act.name + " does not exist!");
+      console.error(act.name + ' does not exist!');
       this.callNextAction(cache);
     }
   }
@@ -317,7 +319,7 @@ export default class Actions extends Logger {
         this.displayError(act, cache, e);
       }
     } else {
-      console.error(act.name + " does not exist!");
+      console.error(act.name + ' does not exist!');
       this.callNextAction(cache);
     }
   }
@@ -325,17 +327,18 @@ export default class Actions extends Logger {
   callNextAction(cache) {
     cache.index++;
     cache.handlerIndex = (cache.command ?? cache.event)?.position;
+
     const index = cache.index;
     const handlerIndex = cache.handlerIndex;
     const actions = cache.actions;
     const act = actions[index];
-    const isCommand = typeof cache.command !== "undefined";
+    const isCommand = typeof cache.command !== 'undefined';
 
     if (!act) return cache.callback?.();
     if (this.exists(act.name)) {
       try {
         process.send?.(
-          `${isCommand ? "command" : "event"}:${handlerIndex}:${cache.index}`
+          `${isCommand ? 'command' : 'event'}:${handlerIndex}:${cache.index}`
         );
 
         this[act.name](cache);
@@ -343,7 +346,7 @@ export default class Actions extends Logger {
         this.displayError(act, cache, e);
       }
     } else {
-      console.error(act.name + " does not exist!");
+      console.error(act.name + ' does not exist!');
       this.callNextAction(cache);
     }
   }
@@ -706,7 +709,7 @@ export default class Actions extends Logger {
   }
 
   dest(obj, ...props) {
-    if (typeof obj !== "object") return obj;
+    if (typeof obj !== 'object') return obj;
 
     let main = obj;
     for (const prop of props) {

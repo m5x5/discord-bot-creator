@@ -21,8 +21,8 @@ const args = arg({
 });
 
 const rendererPort = args['--port'] || 8888;
-// const remoteDebuggingPort = args["--remote-debugging-port"] || 5858;
-// const inspectPort = args["--inspect"] || 9292;
+const remoteDebuggingPort = args['--remote-debugging-port'] || 5858;
+const inspectPort = args['--inspect'] || 9292;
 
 const execaOptions = {
   cwd: process.cwd(),
@@ -54,8 +54,8 @@ async function dev() {
       [
         '.',
         `${rendererPort}`,
-        // `--remote-debugging-port=${remoteDebuggingPort}`,
-        // `--inspect=${inspectPort}`,
+        `--remote-debugging-port=${remoteDebuggingPort}`,
+        `--inspect=${inspectPort}`,
       ],
       {
         detached: false,

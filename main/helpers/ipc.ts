@@ -63,7 +63,7 @@ ipcMain.on('chooseDirectory', async (event, folder) => {
 
 ipcMain.on('getSettings', async (event, folder: string) => {
   if (typeof folder !== 'string') folder = loader.filePath;
-  const settings = await Loader.getSettings(folder);
+  const settings = Loader.getSettings(folder);
   event.sender.send('getSettings', settings);
 });
 
@@ -121,6 +121,7 @@ ipcMain.on('onBotRun', async (event) => {
 });
 
 ipcMain.on('onBotStop', async (event) => {
+  log('onBotStop');
   try {
     await runner?.stop();
     event.sender.send('onBotStop', { success: true });

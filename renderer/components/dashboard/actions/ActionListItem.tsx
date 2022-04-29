@@ -31,6 +31,14 @@ const Item = styled('div', {
       color: '$danger',
     },
   },
+
+  variants: {
+    errored: {
+      true: {
+        borderColor: '$danger',
+      },
+    },
+  },
 });
 
 const CloseButton = styled(XIcon, {
@@ -68,10 +76,12 @@ export default function ActionItem({ action, index }) {
   const error = errors.find((e) => {
     return e.handlerIndex === handlerIndex && e.actionIndex === index;
   });
+  console.log(handlerIndex, index);
+  console.log(errors, error);
 
   return (
     <div>
-      <Item className={error ? 'border-danger' : ''}>
+      <Item errored={!!error}>
         <div className="top" onClick={toggle}>
           <p>{action?.name}</p>
           <p className="error">{error?.message}</p>

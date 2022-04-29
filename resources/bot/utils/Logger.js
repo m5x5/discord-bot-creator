@@ -1,20 +1,22 @@
 export default class Logger {
   getLogPosition(data, cache) {
     const type =
-      data.permissions || data.restriction || !data["event-type"]
-        ? "command"
-        : "event";
+      data.permissions || data.restriction || !data['event-type']
+        ? 'command'
+        : 'event';
 
     return `${cache.handlerIndex}:${cache.index}`;
   }
 
   getErrorString(data, cache) {
     const type =
-      data.permissions || data.restriction || !data["event-type"]
-        ? "command"
-        : "event";
+      data.permissions || data.restriction || !data['event-type']
+        ? 'command'
+        : 'event';
 
-    return cache.handlerIndex ? `[err:${this.getLogPosition(data, cache)}]` : `Error with ${type} "${data.name}"`;
+    return cache.handlerIndex
+      ? `[err:${this.getLogPosition(data, cache)}]`
+      : `Error with ${type} "${data.name}"`;
   }
 
   /**
@@ -30,12 +32,12 @@ export default class Logger {
     if (process.send) {
       process.send({
         message: err?.message || err,
-        type: "error",
-        handlerIndex: cache.handlerIndex,
-        actionIndex: cache.index,
+        type: 'error',
+        handlerIndex: cache.handlerIndex ?? 0,
+        actionIndex: cache.index ?? 0,
       });
     } else {
-      console.error(error + ":\n" + err);
+      console.error(error + ':\n' + err);
     }
   }
 }
