@@ -5,8 +5,9 @@ const configure = require('../webpack.config');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
-const log = require('../logger');
+const log = require('./logger');
 const pidtree = require('pidtree');
+const MyPrompt = require('./prompt');
 
 const args = arg({
   '--help': Boolean,

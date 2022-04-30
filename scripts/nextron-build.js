@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const execa = require('execa');
 const fs = require('fs-extra');
 const path = require('path');
-const log = require('../logger');
+const log = require('./logger');
 
 const args = arg({
   '--help': Boolean,
