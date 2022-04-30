@@ -61,8 +61,8 @@ export default function FieldManager({ fields, fieldValues, form }) {
                 return null;
               }
             }
-            if (typeof fi.equalTo !== 'undefined') {
-              if (+fieldValues[fi.field] !== fi.equalTo) {
+            if (typeof fi.equals !== 'undefined') {
+              if (+fieldValues[fi.field] !== fi.equals) {
                 return null;
               }
             }
