@@ -40,6 +40,7 @@ const Footer = styled('div', {
 
 const Nav = styled('div', {
   display: 'none',
+  width: '100%',
   '@bp1': {
     display: 'flex',
     flexFlow: 'column',

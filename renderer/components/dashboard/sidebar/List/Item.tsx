@@ -12,6 +12,8 @@ const Container = styled('div', {
   padding: '0.5rem 1rem',
   borderRadius: '$1',
   color: '$gray100',
+  width: '100%',
+  boxSizing: 'border-box',
 
   '> .errors': {
     backgroundColor: '$danger',
