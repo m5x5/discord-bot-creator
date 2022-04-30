@@ -1,3 +1,4 @@
+import { watch } from 'chokidar';
 import { log } from 'electron-log';
 import _eval from 'eval';
 import fg from 'fast-glob';
@@ -31,9 +32,7 @@ export default class Loader {
       JSON.stringify(settings, null, 2)
     );
   }
-  async getLocalActions() {
-    log(`Action Path: ${path.join(__dirname, '../resources/actions/*.js')}`);
-    log('Loader __dirname:', __dirname);
+  static async getLocalActions() {
     const directory = path
       .join(__dirname, '../resources/actions/*.js')
       .replace(/\\/g, '/');
@@ -65,6 +64,14 @@ export default class Loader {
 
     return actions;
   }
+  static async watchActions(cb: Function) {
+    const actionsFolder = path.join(__dirname, '../resources/actions');
+    watch(actionsFolder).on('change', async () => {
+      const actions = await Loader.getLocalActions();
+      cb(actions);
+    });
+  }
+
   async getCommands() {
     const commands = fs.readFileSync(
       path.resolve(this.filePath, './data/commands.json'),

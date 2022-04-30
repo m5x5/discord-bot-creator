@@ -13,6 +13,11 @@ export default function useActions({ force } = {}) {
   });
 
   useEffect(() => {
+    ipcRenderer?.on('actionsUpdate', (_event, actions) => {
+      window._actions = actions;
+      setActions(actions);
+    });
+
     if ((window._loading || window._actions) && !force) {
       return;
     }
@@ -29,6 +34,7 @@ export default function useActions({ force } = {}) {
 
     return () => {
       ipcRenderer?.removeAllListeners('getActions');
+      ipcRenderer?.removeAllListeners('actionsUpdate');
     };
   }, [!!ipcRenderer, actions]);
 

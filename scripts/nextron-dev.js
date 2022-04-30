@@ -7,7 +7,6 @@ const path = require('path');
 const webpack = require('webpack');
 const log = require('./logger');
 const pidtree = require('pidtree');
-const MyPrompt = require('./prompt');
 
 const args = arg({
   '--help': Boolean,

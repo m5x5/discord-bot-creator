@@ -21,6 +21,7 @@ export const SUPPORTED_FIELDS = [
   'guild',
   'varName2',
   'days',
+  'emoji',
   // IRL not supported
   'channel',
   'message',
@@ -135,6 +136,16 @@ export default function FieldManager({ fields, fieldValues, form }) {
             );
           }
           if (config.type === 'message') {
+            return (
+              <SelectMessage
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
+            );
+          }
+          if (config.type === 'emoji') {
             return (
               <SelectMessage
                 key={field}

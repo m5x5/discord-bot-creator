@@ -1,6 +1,6 @@
 import { app, globalShortcut, ipcMain, shell } from 'electron';
 import serve from 'electron-serve';
-import { createMenu, createWindow } from './helpers';
+import { createMenu, createWindow, Loader } from './helpers';
 import './helpers/ipc';
 import { addLog, getLogs } from './helpers/logs';
 
@@ -58,6 +58,10 @@ if (isProd) {
 
   ipcMain.on('onBotError', (error) => {
     mainWindow.webContents.send('onErrorsUpdate', error);
+  });
+
+  Loader.watchActions((actions) => {
+    mainWindow.webContents.send('actionsUpdate', actions);
   });
 })();
 

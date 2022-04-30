@@ -75,7 +75,7 @@ ipcMain.handle('getBotInfo', async (event, folder: string) => {
 });
 
 ipcMain.on('getActions', async (event) => {
-  let actions = await loader?.getLocalActions();
+  let actions = await Loader.getLocalActions();
   event.sender.send('getActions', actions);
 });
 
