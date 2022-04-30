@@ -30,10 +30,13 @@ export default {
       }
     } else {
       emoji = this.getVariable(
-        type,
+        type - 1,
         this.evalMessage(data.varName3, cache),
         cache
       );
+      if (!emoji) {
+        this.displayError(data, cache, 'Emoji not found.');
+      }
     }
 
     if (Array.isArray(message)) {

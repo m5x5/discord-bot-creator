@@ -4,6 +4,7 @@ import CommentField from './Comment';
 import Input from './Input';
 import InputVariable from './Input/Variable';
 import SelectChannel from './Select/Channel';
+import CustomSelect from './Select/Custom';
 import SelectEmoji from './Select/Emoji';
 import SelectGuild from './Select/Guild';
 import SelectMember from './Select/Member';
@@ -179,6 +180,16 @@ export default function FieldManager({ fields, fieldValues, form }) {
           if (config.type === 'checkbox') {
             return (
               <Switch key={field} field={field} value={fieldValues[field]} />
+            );
+          }
+          if (config.type === 'select') {
+            return (
+              <CustomSelect
+                key={field}
+                config={config}
+                field={field}
+                value={fieldValues[field]}
+              />
             );
           }
         })}
