@@ -45,7 +45,6 @@ export default function InputVariable({
       <Input
         style={{ width: '100%' }}
         {...props}
-        field={field}
         onChange={onChange}
         placeholder={config.placeholder}
       />

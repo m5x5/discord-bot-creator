@@ -38,7 +38,6 @@ export default function Input({ field, config, isEvent, ...props }: Props) {
       <Label>{config.title}</Label>
       <MyInput
         {...props}
-        field={field}
         onChange={onChange}
         placeholder={config.placeholder}
         style={{ width: '100%' }}
