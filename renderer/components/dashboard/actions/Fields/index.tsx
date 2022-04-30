@@ -4,6 +4,7 @@ import CommentField from './Comment';
 import Input from './Input';
 import InputVariable from './Input/Variable';
 import SelectChannel from './Select/Channel';
+import SelectEmoji from './Select/Emoji';
 import SelectGuild from './Select/Guild';
 import SelectMember from './Select/Member';
 import SelectMessage from './Select/Message';
@@ -52,6 +53,16 @@ export default function FieldManager({ fields, fieldValues, form }) {
             const fi = config.if;
             if (typeof fi.greaterThan !== 'undefined') {
               if (+fieldValues[fi.field] <= fi.greaterThan) {
+                return null;
+              }
+            }
+            if (typeof fi.lessThan !== 'undefined') {
+              if (+fieldValues[fi.field] >= fi.lessThan) {
+                return null;
+              }
+            }
+            if (typeof fi.equalTo !== 'undefined') {
+              if (+fieldValues[fi.field] !== fi.equalTo) {
                 return null;
               }
             }
@@ -147,7 +158,7 @@ export default function FieldManager({ fields, fieldValues, form }) {
           }
           if (config.type === 'emoji') {
             return (
-              <SelectMessage
+              <SelectEmoji
                 key={field}
                 config={config}
                 field={field}

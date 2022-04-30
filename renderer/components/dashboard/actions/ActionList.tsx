@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { styled } from '../../../stitches.config';
 import Label from '../../core/Label';
@@ -19,6 +20,8 @@ const List = styled('div', {
 
 export default function ActionList() {
   const { actions, reorderAction } = useDashboardContext();
+  const [expanded, setExpanded] = useState(-1);
+  const isExpanded = (i: number) => i === expanded;
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
@@ -42,6 +45,7 @@ export default function ActionList() {
                   key={'key-' + action.name + '-' + i}
                   draggableId={action.name + '-' + i}
                   index={i}
+                  isDragDisabled={isExpanded(i)}
                 >
                   {(provided) => (
                     <div
@@ -49,9 +53,13 @@ export default function ActionList() {
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
                       key={i}
-                      index={i}
                     >
-                      <ActionItem action={action} index={i} />
+                      <ActionItem
+                        action={action}
+                        index={i}
+                        isExpanded={isExpanded(i)}
+                        onClick={() => setExpanded(isExpanded(i) ? -1 : i)}
+                      />
                     </div>
                   )}
                 </Draggable>

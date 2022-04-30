@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { evalHTML, evalInit, evalListener } from '../../../lib/runInContext';
-import Button from '../../core/Button';
 import { useDashboardContext } from '../DashboardContext';
 import FieldManager, { fieldsSupported } from './Fields';
 
@@ -85,10 +84,6 @@ export default function ActionForm({ show, isEvent, onHide }) {
       ) : (
         <div dangerouslySetInnerHTML={{ __html: state.html }} ref={content} />
       )}
-      <Button onClick={hide}>Close</Button>
-      <Button onClick={hide} variant="success">
-        Save
-      </Button>
     </div>
   );
 }

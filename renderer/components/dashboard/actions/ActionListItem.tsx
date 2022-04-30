@@ -1,5 +1,4 @@
 import { XIcon } from '@heroicons/react/solid';
-import { useState } from 'react';
 import { styled } from '../../../stitches.config';
 import { useDashboardContext } from '../DashboardContext';
 import ActionForm from './ActionForm';
@@ -13,7 +12,6 @@ const Item = styled('div', {
   maxWidth: '100%',
   borderRadius: '$1',
   border: '1px solid $gray900',
-  padding: '$2 $3',
 
   '> .top': {
     display: 'flex',
@@ -21,6 +19,9 @@ const Item = styled('div', {
     justifyContent: 'space-between',
     flexFlow: 'row',
     width: '100%',
+    padding: '$2 $2 $2 $3',
+    boxSizing: 'border-box',
+    cursor: 'pointer',
 
     '> p': {
       margin: 0,
@@ -51,7 +52,16 @@ const CloseButton = styled(XIcon, {
   },
 });
 
-export default function ActionItem({ action, index }) {
+const Content = styled('div', {
+  padding: '0 $3 $2 $3',
+});
+
+export default function ActionItem({
+  action,
+  index,
+  isExpanded,
+  onClick = () => {},
+}) {
   const {
     removeAction,
     updateActionIndex,
@@ -60,7 +70,6 @@ export default function ActionItem({ action, index }) {
     errors,
     mode,
   } = useDashboardContext();
-  const [show, setShow] = useState(false);
 
   const remove = (e) => {
     e.stopPropagation();
@@ -70,7 +79,7 @@ export default function ActionItem({ action, index }) {
   const toggle = () => {
     updateActionIndex(index);
     showActionModal();
-    setShow(!show);
+    onClick();
   };
 
   const error = errors.find((e) => {
@@ -78,22 +87,22 @@ export default function ActionItem({ action, index }) {
   });
 
   return (
-    <div>
-      <Item errored={!!error}>
-        <div className="top" onClick={toggle}>
-          <p>{action?.name}</p>
-          <p className="error">{error?.message}</p>
-          <CloseButton onClick={remove} />
-        </div>
+    <Item errored={!!error}>
+      <div className="top" onClick={toggle}>
+        <p>{action?.name}</p>
+        <p className="error">{error?.message}</p>
+        <CloseButton onClick={remove} />
+      </div>
 
-        {show && (
+      {isExpanded && (
+        <Content>
           <ActionForm
             show
             onHide={() => showActionModal(false)}
             isEvent={mode === 'event'}
           />
-        )}
-      </Item>
-    </div>
+        </Content>
+      )}
+    </Item>
   );
 }

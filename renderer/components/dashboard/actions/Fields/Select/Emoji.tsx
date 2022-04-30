@@ -5,7 +5,7 @@ type Props = {
   [key: string]: any;
 };
 
-export default function SelectMessage({
+export default function SelectEmoji({
   field,
   isEvent,
   config,
