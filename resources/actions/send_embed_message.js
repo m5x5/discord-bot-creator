@@ -1,128 +1,68 @@
 module.exports = {
-  name: "Send Embed Message",
-  section: "Embed Message",
+  name: 'Send Embed Message',
+  section: 'Embed Message',
 
-  subtitle(data) {
-    const channels = [
-      "Same Channel",
-      "Command Author",
-      "Mentioned User",
-      "Mentioned Channel",
-      "Default Channel (Top Channel)",
-      "Temp Variable",
-      "Server Variable",
-      "Global Variable",
-    ];
-    return `${channels[parseInt(data.channel, 10)]}: ${data.varName}`;
+  form: {
+    storage: {
+      type: 'storage',
+      title: 'Source Embed Object',
+      inline: true,
+    },
+    varName: {
+      type: 'variable',
+      title: 'Variable Name',
+      inline: 'true',
+    },
+    channel: {
+      type: 'channel',
+      title: 'Send To',
+      inline: true,
+    },
+    varName2: {
+      type: 'variable',
+      title: 'Variable Name',
+      placeholder: 'Variable Name',
+      inline: true,
+      if: {
+        field: 'channel',
+        greaterThan: 1,
+      },
+    },
+    storage3: {
+      type: 'storage',
+      title: 'Store Message',
+      inline: true,
+    },
+    varName3: {
+      type: 'variable',
+      title: 'Variable Name',
+      placeholder: 'Variable Name',
+      inline: true,
+      if: {
+        field: 'storage3',
+        greaterThan: 0,
+      },
+    },
+    iffalse: {
+      type: 'iffalse',
+      title: 'If False',
+      description: 'If the message is not sent, run this code.',
+    },
+    iffalseVal: {
+      type: 'text',
+      title: 'If False Value',
+      placeholder: 'Value',
+    },
+    messageContent: {
+      type: 'textarea',
+      title: 'Message Content',
+      inline: true,
+    },
   },
 
   variableStorage(data, varType) {
     if (parseInt(data.storage3, 10) !== varType) return;
-    return [data.varName3, "Message"];
-  },
-
-  fields: [
-    "storage",
-    "varName",
-    "channel",
-    "varName2",
-    "storage3",
-    "varName3",
-    "iffalse",
-    "iffalseVal",
-    "messageContent",
-  ],
-
-  html(isEvent, data) {
-    return `
-<div></div><br>
-<div>
-  <div style="float: left; width: 35%;">
-    Source Embed Object:<br>
-    <select id="storage" class="round" onchange="glob.refreshVariableList(this)">
-      ${data.variables[1]}
-    </select>
-  </div>
-  <div id="varNameContainer" style="float: right; width: 60%;">
-    Variable Name:<br>
-    <input id="varName" class="round" type="text" list="variableList">
-  </div><br><br><br>
-  <div style="float: left; padding-top: 4px; width: 42%; height: 30px">
-    Message Content:<br>
-    <input id="messageContent" class="round" type="text" placeholder="Leave blank to ignore...">
-  </div><br><br><br>
-  <div style="padding-top: 8px; float: left; width: 35%;">
-    Send To:<br>
-    <select id="channel" class="round" onchange="glob.sendTargetChange(this, 'varNameContainer2')">
-      ${data.sendTargets[isEvent ? 1 : 0]}
-    </select>
-  </div>
-  <div id="varNameContainer2" style="display: none; float: right; width: 60%; padding-top: 8px">
-    Variable Name:<br>
-    <input id="varName2" class="round" type="text" list="variableList"><br>
-  </div><br><br><br><br>
-  <div style="float: left; width: 35%;">
-    Store Message Object In:<br>
-    <select id="storage3" class="round" onchange="glob.variableChange(this, 'varNameContainer3')">
-      ${data.variables[0]}
-    </select>
-  </div>
-  <div id="varNameContainer3" style="display: ; float: right; width: 60%;">
-    Storage Variable Name:<br>
-    <input id="varName3" class="round" type="text">
-  </div><br><br><br>
-  <div style="padding-top: 8px;">
-    <div style="float: left; width: 35%;">
-      If Message Delivery Fails:<br>
-      <select id="iffalse" class="round" onchange="glob.onChangeFalse(this)">
-        <option value="0" selected>Continue Actions</option>
-        <option value="1">Stop Action Sequence</option>
-        <option value="2">Jump To Action</option>
-        <option value="3">Skip Next Actions</option>
-        <option value="4">Jump To Anchor</option>
-      </select>
-    </div>
-    <div id="iffalseContainer" style="display: none; float: right; width: 60%;">
-      <span id="iffalseName">Action Number</span>:<br><input id="iffalseVal" class="round" type="text">
-    </div>
-  </div>
-</div>`;
-  },
-
-  init() {
-    const { glob, document } = this;
-    glob.onChangeFalse = function onChangeFalse(event) {
-      switch (parseInt(event.value, 10)) {
-        case 0:
-        case 1:
-          document.getElementById("iffalseContainer").style.display = "none";
-          break;
-        case 2:
-          document.getElementById("iffalseName").innerHTML = "Action Number";
-          document.getElementById("iffalseContainer").style.display = null;
-          break;
-        case 3:
-          document.getElementById("iffalseName").innerHTML =
-            "Number of Actions to Skip";
-          document.getElementById("iffalseContainer").style.display = null;
-          break;
-        case 4:
-          document.getElementById("iffalseName").innerHTML = "Anchor ID";
-          document.getElementById("iffalseContainer").style.display = null;
-          break;
-        default:
-          break;
-      }
-    };
-    glob.sendTargetChange(
-      document.getElementById("channel"),
-      "varNameContainer2"
-    );
-    glob.variableChange(
-      document.getElementById("storage3"),
-      "varNameContainer3"
-    );
-    glob.onChangeFalse(document.getElementById("iffalse"));
+    return [data.varName3, 'Message'];
   },
 
   action(cache) {
