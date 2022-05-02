@@ -271,6 +271,8 @@ export default function EventHeader() {
   ];
 
   const selected = options.find((o) => o.value === event?.['event-type']);
+  if (!selected) return <div>No Event Selected</div>;
+
   return (
     <div>
       <div>

@@ -50,6 +50,8 @@ export default function DashboardWindowHeader() {
     restrictions.find((r) => r.value === command.restriction) ||
     restrictions[0];
 
+  if (!command) return <div>No Command Selected</div>;
+
   return (
     <Container>
       <Group>
