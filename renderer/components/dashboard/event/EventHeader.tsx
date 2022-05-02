@@ -1,5 +1,6 @@
 import Input from '../../core/Input';
 import Label from '../../core/Label';
+import Select from '../../core/Select';
 import { useDashboardContext } from '../DashboardContext';
 import HandlerNameInput from '../handlers/HandlerNameInput';
 
@@ -7,7 +8,7 @@ export default function EventHeader() {
   const { handler: event, updateHandler } = useDashboardContext();
 
   const onSelect = (e) => {
-    updateHandler({ ['event-type']: e.target.value });
+    updateHandler({ ['event-type']: e.value });
   };
 
   const onChangeTemp = (e) => {
@@ -228,48 +229,48 @@ export default function EventHeader() {
 
   const option = eventTypeOptions[event?.['event-type']];
   const options = [
-    // <option value="0">None</option>
-    // <option value="1">Bot Initialization</option>
-    // <option value="2">Message Sent</option>
-    // <option value="3">On Interval</option>
-    // <option value="4">Bot Join Server</option>
-    // <option value="5">Bot Leave Server</option>
-    // <option value="6">Member Join Server</option>
-    // <option value="7">Member Leave Server</option>
-    // <option value="8">Channel Create</option>
-    // <option value="9">Channel Delete</option>
-    // <option value="10">Role Create</option>
-    // <option value="11">Role Delete</option>
-    // <option value="12">Member Banned</option>
-    // <option value="13">Member Unbanned</option>
-    // <option value="14">Voice Channel Create</option>
-    // <option value="15">Voice Channel Delete</option>
-    // <option value="16">Emoji Create</option>
-    // <option value="17">Emoji Delete</option>
-    // <option value="18">Message Deleted</option>
-    // <option value="19">Server Update</option>
-    // <option value="20">Member Update</option>
-    // <option value="21">Presence Update</option>
-    // <option value="22">Member Voice Update</option>
-    // <option value="23">Channel Update</option>
-    // <option value="24">Channel Pins Update</option>
-    // <option value="25">Role Update</option>
-    // <option value="26">Message Update</option>
-    // <option value="27">Emoji Update</option>
-    // <option value="28">Message Reaction Added</option>
-    // <option value="29">Message Reaction Removed</option>
-    // <option value="30">All Message Reactions Removed</option>
-    // <option value="31">Member Becomes Available</option>
-    // <option value="32">Member Chunck Received</option>
-    // <option value="33">Member Starts/Stops Speaking</option>
-    // <option value="34">Member Typing Starts</option>
-    // <option value="35">Member Typing Stops</option>
-    // <option value="36">Server Becomes Unavailable</option>
-    // <option value="37">On Bot Error</option>
-    // <option value="38">On Time Restricted Command</option>
-    // TODO: Let codepilot convert everything to the version that is in CommandHeader too
+    { label: 'None', value: 0 },
+    { label: 'Bot Initialization', value: 1 },
+    { label: 'Message Sent', value: 2 },
+    { label: 'On Interval', value: 3 },
+    { label: 'Bot Join Server', value: 4 },
+    { label: 'Bot Leave Server', value: 5 },
+    { label: 'Member Join Server', value: 6 },
+    { label: 'Member Leave Server', value: 7 },
+    { label: 'Channel Create', value: 8 },
+    { label: 'Channel Delete', value: 9 },
+    { label: 'Role Create', value: 10 },
+    { label: 'Role Delete', value: 11 },
+    { label: 'Member Banned', value: 12 },
+    { label: 'Member Unbanned', value: 13 },
+    { label: 'Voice Channel Create', value: 14 },
+    { label: 'Voice Channel Delete', value: 15 },
+    { label: 'Emoji Create', value: 16 },
+    { label: 'Emoji Delete', value: 17 },
+    { label: 'Message Deleted', value: 18 },
+    { label: 'Server Update', value: 19 },
+    { label: 'Member Update', value: 20 },
+    { label: 'Presence Update', value: 21 },
+    { label: 'Member Voice Update', value: 22 },
+    { label: 'Channel Update', value: 23 },
+    { label: 'Channel Pins Update', value: 24 },
+    { label: 'Role Update', value: 25 },
+    { label: 'Message Update', value: 26 },
+    { label: 'Emoji Update', value: 27 },
+    { label: 'Message Reaction Added', value: 28 },
+    { label: 'Message Reaction Removed', value: 29 },
+    { label: 'All Message Reactions Removed', value: 30 },
+    { label: 'Member Becomes Available', value: 31 },
+    { label: 'Member Chunck Received', value: 32 },
+    { label: 'Member Starts/Stops Speaking', value: 33 },
+    { label: 'Member Typing Starts', value: 34 },
+    { label: 'Member Typing Stops', value: 35 },
+    { label: 'Server Becomes Unavailable', value: 36 },
+    { label: 'On Bot Error', value: 37 },
+    { label: 'On Time Restricted Command', value: 38 },
   ];
 
+  const selected = options.find((o) => o.value === event?.['event-type']);
   return (
     <div>
       <div>
@@ -279,47 +280,7 @@ export default function EventHeader() {
       <form>
         <div className="mb-3">
           <Label>Trigger</Label>
-          <select value={event?.['event-type']} onChange={onSelect}>
-            <option value="0">None</option>
-            <option value="1">Bot Initialization</option>
-            <option value="2">Message Sent</option>
-            <option value="3">On Interval</option>
-            <option value="4">Bot Join Server</option>
-            <option value="5">Bot Leave Server</option>
-            <option value="6">Member Join Server</option>
-            <option value="7">Member Leave Server</option>
-            <option value="8">Channel Create</option>
-            <option value="9">Channel Delete</option>
-            <option value="10">Role Create</option>
-            <option value="11">Role Delete</option>
-            <option value="12">Member Banned</option>
-            <option value="13">Member Unbanned</option>
-            <option value="14">Voice Channel Create</option>
-            <option value="15">Voice Channel Delete</option>
-            <option value="16">Emoji Create</option>
-            <option value="17">Emoji Delete</option>
-            <option value="18">Message Deleted</option>
-            <option value="19">Server Update</option>
-            <option value="20">Member Update</option>
-            <option value="21">Presence Update</option>
-            <option value="22">Member Voice Update</option>
-            <option value="23">Channel Update</option>
-            <option value="24">Channel Pins Update</option>
-            <option value="25">Role Update</option>
-            <option value="26">Message Update</option>
-            <option value="27">Emoji Update</option>
-            <option value="28">Message Reaction Added</option>
-            <option value="29">Message Reaction Removed</option>
-            <option value="30">All Message Reactions Removed</option>
-            <option value="31">Member Becomes Available</option>
-            <option value="32">Member Chunck Received</option>
-            <option value="33">Member Starts/Stops Speaking</option>
-            <option value="34">Member Typing Starts</option>
-            <option value="35">Member Typing Stops</option>
-            <option value="36">Server Becomes Unavailable</option>
-            <option value="37">On Bot Error</option>
-            <option value="38">On Time Restricted Command</option>
-          </select>
+          <Select onChange={onSelect} value={selected} options={options} />
         </div>
         {option?.temp && (
           <div>
