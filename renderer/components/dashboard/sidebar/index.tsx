@@ -98,7 +98,7 @@ export default function Sidebar() {
               variant="secondary"
               width={'full'}
             >
-              Add Command
+              Add {mode === 'command' ? 'Command' : 'Event'}
             </Button>
           </Footer>
         </Items>
