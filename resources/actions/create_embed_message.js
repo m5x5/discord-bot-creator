@@ -1,40 +1,136 @@
-module.exports = {
-  name: "Create Embed Message",
-  section: "Embed Message",
-
-  subtitle(data) {
-    return `${data.title}`;
-  },
+export default {
+  name: 'Create Embed Message',
+  section: 'Embed Message',
 
   variableStorage(data, varType) {
     if (parseInt(data.storage, 10) !== varType) return;
-    return [data.varName, "Embed Object"];
+    return [data.varName, 'Embed Object'];
+  },
+
+  form: {
+    title: {
+      type: 'text',
+      title: 'Title',
+      placeholder: 'Empty for no title',
+    },
+    author: {
+      type: 'text',
+      title: 'Author Name',
+      placeholder: 'Empty for no author',
+    },
+    color: {
+      type: 'color',
+      title: 'Embed Color',
+    },
+    url: {
+      type: 'text',
+      title: 'URL',
+      placeholder: 'Leave blank for no URL',
+    },
+    authorUrl: {
+      type: 'text',
+      title: 'Author URL',
+      placeholder: 'Leave blank for no URL',
+    },
+    imageUrl: {
+      type: 'text',
+      title: 'Image URL',
+      placeholder: 'Leave blank for no image',
+    },
+    thumbUrl: {
+      type: 'text',
+      title: 'Thumbnail URL',
+      placeholder: 'Leave blank for no thumbnail',
+    },
+    timestamp: {
+      type: 'select',
+      title: 'Timestamp',
+      options: [
+        { label: 'No Timestamp', value: 0 },
+        { label: 'Current Timestamp', value: 1 },
+        { label: 'String Timestamp', value: 2 },
+        { label: 'Custom Timestamp', value: 3 },
+      ],
+    },
+    timestampDivDebug: {
+      type: 'select',
+      title: 'Timestamp',
+      options: [
+        { label: 'No Timestamp', value: true },
+        { label: 'Current Timestamp', value: false },
+      ],
+    },
+    debug: {
+      type: 'select',
+      title: 'Debug',
+      options: [{ label: 'No - More options' }, { label: 'Yes - More stable' }],
+    },
+    timestamp1: {
+      type: 'text',
+      title: 'UTC Timestamp',
+    },
+    year: {
+      type: 'text',
+      title: 'Year',
+    },
+    month: {
+      type: 'text',
+      title: 'Month',
+    },
+    day: {
+      type: 'text',
+      title: 'Day',
+    },
+    hour: {
+      type: 'text',
+      title: 'Hour',
+    },
+    minute: {
+      type: 'text',
+      title: 'Minute',
+    },
+    second: {
+      type: 'text',
+      title: 'Second',
+    },
+    note1: {
+      type: 'note',
+      value:
+        'This setting works with time formats like "March 3, 2020" or "3600000" (1 hour in ms).',
+    },
+    note2: {
+      type: 'note',
+      value: `Correct input:
+Year: [2019] Month: [1] Day: [1] Hour: [ ] Minute: [ ] Second: [ ]
+Incorrect input:
+Year: [2019] Month: [1] Day: [1] Hour: [ ] Minute: [1] Second: [ ]`,
+    },
   },
 
   fields: [
-    "title",
-    "author",
-    "color",
-    "url",
-    "authorIcon",
-    "authorUrl",
-    "imageUrl",
-    "thumbUrl",
-    "timestamp",
-    "debug",
-    "timestamp1",
-    "timestamp2",
-    "text",
-    "year",
-    "month",
-    "day",
-    "hour",
-    "minute",
-    "second",
-    "note1",
-    "note2",
-    "storage",
-    "varName",
+    'title',
+    'author',
+    'color',
+    'url',
+    'authorIcon',
+    'authorUrl',
+    'imageUrl',
+    'thumbUrl',
+    'timestamp',
+    'debug',
+    'timestamp1',
+    'timestamp2',
+    'text',
+    'year',
+    'month',
+    'day',
+    'hour',
+    'minute',
+    'second',
+    'note1',
+    'note2',
+    'storage',
+    'varName',
   ],
 
   html(_isEvent, data) {
@@ -42,7 +138,7 @@ module.exports = {
 <div id ="wrexdiv" style="width: 550px; height: 350px; overflow-y: scroll; overflow-x: hidden;">
 <div>
   <p>
-    
+    This action has been modified by DBM Mods.
   </p>
 </div>
 <div style="float: left; width: 50%; padding-top: 16px;">
@@ -152,71 +248,7 @@ module.exports = {
 </div>`;
   },
 
-  init() {
-    const { glob, document } = this;
-    const timestampDiv = document.getElementById("timestampDiv");
-    const timestamp = document.getElementById("timestamp");
-    const timestampDivDebug = document.getElementById("timestampDivDebug");
-    const debug = document.getElementById("debug");
-    const timestamp1 = document.getElementById("timestamp1");
-    const timestamp2 = document.getElementById("timestamp2");
-    const note = document.getElementById("note1");
-    const note2 = document.getElementById("note2");
-    const authorUrl = document.getElementById("authorUrl");
-
-    glob.onChange1 = function onChange1() {
-      if (debug.value === "false") {
-        authorUrl.placeholder = "Leave blank for none!";
-        switch (timestamp.value) {
-          case "false":
-          case "true":
-            timestamp1.style.display = "none";
-            timestamp2.style.display = "none";
-            note.style.display = "none";
-            note2.style.display = "none";
-            break;
-          case "string":
-            timestamp1.style.display = "table";
-            timestamp2.style.display = "none";
-            note.style.display = null;
-            note2.style.display = "none";
-            break;
-          case "custom":
-            timestamp1.style.display = "none";
-            timestamp2.style.display = "table";
-            note.style.display = "none";
-            note2.style.display = null;
-            break;
-        }
-      }
-    };
-
-    glob.onChange2 = function onChange2() {
-      switch (debug.value) {
-        case "false":
-          timestampDiv.style.display = null;
-          timestampDivDebug.style.display = "none";
-          break;
-        case "true":
-          timestampDiv.style.display = "none";
-          timestampDivDebug.style.display = null;
-          timestamp1.style.display = "none";
-          timestamp2.style.display = "none";
-          note.style.display = "none";
-          note2.style.display = "none";
-          authorUrl.placeholder = "Unavailable!";
-          break;
-      }
-      glob.onChange1();
-    };
-
-    document.getElementById("timestamp");
-    document.getElementById("debug");
-
-    glob.onChange1(document.getElementById("timestamp"));
-    glob.onChange2(document.getElementById("debug"));
-  },
-
+  /** @this {import("../utils/Actions.js").default} */
   action(cache) {
     const data = cache.actions[cache.index];
     const { DiscordJS } = this.getDBM();
@@ -236,16 +268,15 @@ module.exports = {
 
     if (!varName) return this.callNextAction(cache);
 
-    if (debug !== "true") {
-      // Title
+    if (debug !== 'true') {
       if (data.title) {
         embed.setTitle(this.evalMessage(data.title, cache));
       }
-      // URL
+
       if (data.url) {
         embed.setURL(this.evalMessage(data.url, cache));
       }
-      // Author Name
+
       if (data.author) {
         embed.setAuthor(
           this.evalMessage(data.author, cache),
@@ -253,36 +284,36 @@ module.exports = {
           this.evalMessage(data.authorUrl, cache)
         );
       }
-      // Color
+
       if (data.color) {
         embed.setColor(this.evalMessage(data.color, cache));
       }
-      // Image URL
+
       if (data.imageUrl) {
         embed.setImage(this.evalMessage(data.imageUrl, cache));
       }
-      // Thumbnail URL
+
       if (data.thumbUrl) {
         embed.setThumbnail(this.evalMessage(data.thumbUrl, cache));
       }
-      // Timestamp
+
       switch (timestamp) {
-        case "false":
+        case 'false':
           break;
-        case "true":
+        case 'true':
           embed.setTimestamp();
           break;
-        case "string":
+        case 'string':
           if (text.length > 0) {
             embed.setTimestamp(new Date(`${text}`));
           } else {
             embed.setTimestamp();
             console.log(
-              "Invalid UTC timestamp! Changed from [String Timestamp] to [Current Timestamp]."
+              'Invalid UTC timestamp! Changed from [String Timestamp] to [Current Timestamp].'
             );
           }
           break;
-        case "custom":
+        case 'custom':
           embed.setTimestamp(
             new Date(
               year || null,
@@ -300,7 +331,9 @@ module.exports = {
       }
 
       this.storeValue(embed, storage, varName, cache);
+      console.log(this.callNextAction);
       this.callNextAction(cache);
+      console.log('Test');
     } else {
       if (data.title) {
         embed.setTitle(this.evalMessage(data.title, cache));
@@ -323,7 +356,7 @@ module.exports = {
       if (data.thumbUrl) {
         embed.setThumbnail(this.evalMessage(data.thumbUrl, cache));
       }
-      if (timestampDebug === "true") {
+      if (timestampDebug === 'true') {
         embed.setTimestamp();
       }
       this.storeValue(embed, storage, varName, cache);
