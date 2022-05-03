@@ -19,7 +19,7 @@ const List = styled('div', {
 });
 
 export default function ActionList() {
-  const { actions, reorderAction } = useDashboardContext();
+  const { handler, actions, reorderAction } = useDashboardContext();
   const [expanded, setExpanded] = useState(-1);
   const isExpanded = (i: number) => i === expanded;
 
@@ -29,6 +29,8 @@ export default function ActionList() {
 
     reorderAction(result.source.index, result.destination.index);
   };
+
+  if (!handler || Object.keys(handler).length === 0) return null;
 
   return (
     <Flexbox>

@@ -8,14 +8,15 @@ import { styled } from '../../../stitches.config';
 import { useDashboardContext } from '../DashboardContext';
 
 const Item = styled('div', {
-  width: '$space$6',
+  width: '$space$8',
   height: '$space$6',
-  padding: '0.6rem 0.6rem',
+  padding: '2rem 2rem',
+  paddingLeft: '1rem',
   cursor: 'pointer',
 
   '>svg': {
-    width: '100%',
-    height: '100%',
+    width: '150%',
+    height: '150%',
     filter: 'grayscale(100%) opacity(0.5)',
     color: '$primary',
     transition: '0.2s',
