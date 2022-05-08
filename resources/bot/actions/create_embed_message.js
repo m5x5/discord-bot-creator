@@ -20,107 +20,78 @@ export default {
     const hour = +evalMessage(data.hour);
     const minute = +evalMessage(data.minute);
     const second = +evalMessage(data.second);
-    const timestamp = evalMessage(data.timestamp);
-    const timestampDebug = evalMessage(data.timestampDebug);
-    const debug = evalMessage(data.debug);
+    const timestamp = +evalMessage(data.timestamp);
     const storage = +data.storage;
     const varName = evalMessage(data.varName);
 
     if (!varName) return callNextAction(cache);
 
-    if (debug !== 'true') {
-      if (data.title) {
-        embed.setTitle(evalMessage(data.title));
-      }
-
-      if (data.url) {
-        embed.setURL(evalMessage(data.url));
-      }
-
-      if (data.author) {
-        embed.setAuthor(
-          evalMessage(data.author),
-          evalMessage(data.authorIcon),
-          evalMessage(data.authorUrl)
-        );
-      }
-
-      if (data.color) {
-        embed.setColor(evalMessage(data.color));
-      }
-
-      if (data.imageUrl) {
-        embed.setImage(evalMessage(data.imageUrl));
-      }
-
-      if (data.thumbUrl) {
-        embed.setThumbnail(evalMessage(data.thumbUrl));
-      }
-
-      switch (timestamp) {
-        case 'false':
-          break;
-        case 'true':
-          embed.setTimestamp();
-          break;
-        case 'string':
-          if (text.length > 0) {
-            embed.setTimestamp(new Date(`${text}`));
-          } else {
-            embed.setTimestamp();
-            console.log(
-              'Invalid UTC timestamp! Changed from [String Timestamp] to [Current Timestamp].'
-            );
-          }
-          break;
-        case 'custom':
-          embed.setTimestamp(
-            new Date(
-              year || null,
-              month || null,
-              day || null,
-              hour || null,
-              minute || null,
-              second || null
-            )
-          );
-          break;
-        default:
-          embed.setTimestamp();
-          break;
-      }
-
-      this.storeValue(embed, storage, varName, cache);
-      this.callNextAction(cache);
-    } else {
-      if (data.title) {
-        embed.setTitle(this.evalMessage(data.title, cache));
-      }
-      if (data.url) {
-        embed.setURL(this.evalMessage(data.url, cache));
-      }
-      if (data.author && data.authorIcon) {
-        embed.setAuthor(
-          this.evalMessage(data.author, cache),
-          this.evalMessage(data.authorIcon, cache)
-        );
-      }
-      if (data.color) {
-        embed.setColor(this.evalMessage(data.color, cache));
-      }
-      if (data.imageUrl) {
-        embed.setImage(this.evalMessage(data.imageUrl, cache));
-      }
-      if (data.thumbUrl) {
-        embed.setThumbnail(this.evalMessage(data.thumbUrl, cache));
-      }
-      if (timestampDebug === 'true') {
-        embed.setTimestamp();
-      }
-      this.storeValue(embed, storage, varName, cache);
-      this.callNextAction(cache);
+    if (data.title) {
+      embed.setTitle(evalMessage(data.title));
     }
-  },
 
-  mod() {},
+    if (data.url) {
+      embed.setURL(evalMessage(data.url));
+    }
+
+    if (data.author) {
+      embed.setAuthor({
+        name: evalMessage(data.author),
+        iconURL: evalMessage(data.authorIcon),
+        url: evalMessage(data.authorUrl),
+      });
+    }
+
+    if (data.color) {
+      embed.setColor(evalMessage(data.color));
+    }
+
+    if (data.imageUrl) {
+      embed.setImage(evalMessage(data.imageUrl));
+    }
+
+    if (data.thumbUrl) {
+      embed.setThumbnail(evalMessage(data.thumbUrl));
+    }
+
+    switch (timestamp) {
+      // No Timestamp
+      case 0:
+        break;
+      // Current Timestamp
+      case 1:
+        embed.setTimestamp();
+        break;
+      // String Timestamp
+      case 2:
+        if (text.length > 0) {
+          embed.setTimestamp(new Date(`${text}`));
+        } else {
+          embed.setTimestamp();
+          console.log(
+            'Invalid UTC timestamp! Changed from [String Timestamp] to [Current Timestamp].'
+          );
+        }
+        break;
+      // Custom Timestamp
+      case 3:
+        embed.setTimestamp(
+          new Date(
+            year || null,
+            month || null,
+            day || null,
+            hour || null,
+            minute || null,
+            second || null
+          )
+        );
+        break;
+      default:
+        embed.setTimestamp();
+        break;
+    }
+
+    this.storeValue(embed, storage, varName, cache);
+    this.callNextAction(cache);
+  },
 };

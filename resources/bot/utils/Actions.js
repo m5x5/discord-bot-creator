@@ -114,6 +114,7 @@ export default class Actions extends Logger {
    */
   evalMessage(content, cache) {
     if (!content) return '';
+    if (typeof content !== 'string') return content;
     // If it doesn't have a variable in it, just return the content
     if (!content.match(/\$\{.*\}/im)) return content;
     // Escape backticks for eval
