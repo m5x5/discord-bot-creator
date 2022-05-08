@@ -24,7 +24,10 @@ export default {
     const storage = +data.storage;
     const varName = evalMessage(data.varName);
 
-    if (!varName) return callNextAction(cache);
+    if (!varName) {
+      this.displayError(data, cache, 'No variable name provided!');
+      return callNextAction(cache);
+    }
 
     if (data.title) {
       embed.setTitle(evalMessage(data.title));

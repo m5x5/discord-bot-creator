@@ -8,6 +8,23 @@ module.exports = {
   },
 
   form: {
+    storage: {
+      type: 'storage',
+      title: 'Storage',
+      inline: true,
+      required: true,
+    },
+    varName: {
+      type: 'text',
+      title: 'Variable Name',
+      placeholder: 'The name of the variable to store the embed in.',
+      required: true,
+      inline: true,
+      if: {
+        field: 'storage',
+        greaterThan: 0,
+      },
+    },
     title: {
       type: 'text',
       title: 'Title',
