@@ -1,13 +1,6 @@
 export default {
-  name: "Attach Image To Embed",
-  section: "Embed Message",
-  fields: [
-    "embedstorage",
-    "embedvarName",
-    "imagestorage",
-    "imagevarName",
-    "filename",
-  ],
+  name: 'Attach Image To Embed',
+  section: 'Embed Message',
 
   /** @this {import("../utils/Actions.js").default} */
   action(cache) {
@@ -21,7 +14,7 @@ export default {
     const imagevarName = this.evalMessage(data.imagevarName, cache);
     const image = this.getVariable(imagestorage, imagevarName, cache);
 
-    const filename = data.filename || "image.png";
+    const filename = data.filename || 'image.png';
 
     const DBM = this.getDBM();
     const { Images } = DBM;
