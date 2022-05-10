@@ -43,19 +43,19 @@ module.exports = {
         greaterThan: 0,
       },
     },
-    iffalse: {
-      type: 'iffalse',
-      title: 'If False',
-      description: 'If the message is not sent, run this code.',
-    },
-    iffalseVal: {
-      type: 'text',
-      title: 'If False Value',
-      placeholder: 'Value',
-    },
     messageContent: {
       type: 'textarea',
       title: 'Message Content',
+    },
+    attachmentStorage: {
+      type: 'storage',
+      title: 'Attachment Storage',
+      inline: true,
+    },
+    attachmentVarName: {
+      type: 'text',
+      title: 'Variable Name',
+      placeholder: 'Storage Variable Name',
       inline: true,
     },
   },

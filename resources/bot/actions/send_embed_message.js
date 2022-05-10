@@ -19,6 +19,17 @@ export default {
       return this.callNextAction(cache);
     }
 
+    const attachmentStorage = +data.attachmentStorage;
+    const attachmentVarName = data.attachmentVarName;
+    const attachment = this.getVariable(
+      attachmentStorage,
+      attachmentVarName,
+      cache
+    );
+    if (attachmentStorage && !attachment) {
+      this.displayError(data, cache, 'Attachment Not Found');
+    }
+
     const messageContent = this.evalMessage(data.messageContent, cache);
     const channel = parseInt(data.channel, 10);
     const varName2 = this.evalMessage(data.varName2, cache);
@@ -28,7 +39,11 @@ export default {
 
     if (target?.send) {
       target
-        .send({ content: messageContent || undefined, embeds: [embed] })
+        .send({
+          content: messageContent || undefined,
+          embeds: [embed],
+          files: [attachment],
+        })
         .then((msg) => {
           if (msg && varName3) this.storeValue(msg, storage3, varName3, cache);
           this.callNextAction(cache);

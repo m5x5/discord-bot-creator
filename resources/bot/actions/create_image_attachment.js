@@ -6,14 +6,14 @@ export default {
   async action(cache) {
     const data = cache.actions[cache.index];
 
-    const url = this.evalMessage(data.url, imageVarName, cache);
+    const url = this.evalMessage(data.url, data.url, cache);
 
     const filename = data.filename || 'image.png';
 
     const DBM = this.getDBM();
     const { Images } = DBM;
 
-    const image = this.getImage(url);
+    const image = await Images.getImage(url);
     const buffer = await Images.createBuffer(image);
     const attachment = new DBM.DiscordJS.MessageAttachment(buffer, filename);
 

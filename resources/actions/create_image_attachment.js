@@ -4,7 +4,7 @@ module.exports = {
 
   fields: [],
   form: {
-    imageVarName: {
+    url: {
       type: 'text',
       title: 'Image URL',
     },
