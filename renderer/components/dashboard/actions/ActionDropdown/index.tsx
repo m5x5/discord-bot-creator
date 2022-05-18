@@ -28,9 +28,17 @@ export default function ActionDropdown({ create }: Props) {
     if (!selected) return;
     const newAction = { name: selected.name };
 
-    selected.fields.forEach((field) => {
-      newAction[field] = '';
-    });
+    // Clear all values to insert a fresh action
+    if (selected.fields) {
+      selected.fields.forEach((field) => {
+        newAction[field] = '';
+      });
+    } else if (selected.form) {
+      const keys = Object.keys(selected.form);
+      keys.forEach((key) => {
+        newAction[key] = '';
+      });
+    }
 
     if (create) {
       addAction(newAction);

@@ -1,38 +1,11 @@
 export default {
-  name: "Set Embed Description",
-
-  section: "Embed Message",
-
-  subtitle: function (data) {
-    return `${data.message}`;
-  },
-
-  fields: ["storage", "varName", "message"],
-
-  html: function (isEvent, data) {
-    return `
-<div>
-	<div style="float: left; width: 35%;">
-		Source Embed Object:<br>
-		<select id="storage" class="round" onchange="glob.refreshVariableList(this)">
-			${data.variables[1]}
-		</select>
-	</div>
-	<div id="varNameContainer" style="float: right; width: 60%;">
-		Variable Name:<br>
-		<input id="varName" class="round" type="text" list="variableList"><br>
-	</div>
-</div><br><br><br>
-<div style="padding-top: 8px;">
-	Description:<br>
-	<textarea id="message" rows="10" placeholder="Insert message here..." style="width: 99%; font-family: monospace; white-space: nowrap; resize: none;"></textarea>
-</div>`;
-  },
+  name: 'Set Embed Description',
+  section: 'Embed Message',
 
   init: function () {
     const { glob, document } = this;
 
-    glob.refreshVariableList(document.getElementById("storage"));
+    glob.refreshVariableList(document.getElementById('storage'));
   },
 
   /** @this {import("../utils/Actions.js").default} */
@@ -43,6 +16,14 @@ export default {
     const embed = this.getVariable(storage, varName, cache);
     if (embed && embed.setDescription) {
       embed.setDescription(this.evalMessage(data.message, cache));
+    } else if (!embed) {
+      this.displayError(data, cache, `Embed not found.`);
+    } else if (!embed.setDescription) {
+      this.displayError(
+        data,
+        cache,
+        `Variable does not have "setDescription" option.`
+      );
     }
     this.callNextAction(cache);
   },

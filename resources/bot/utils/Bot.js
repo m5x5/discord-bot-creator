@@ -16,6 +16,9 @@ export default class Bot {
 
     /** @type {import("./Audio").default} */
     this.Audio = null;
+
+    /** @type {import("discord.js")} */
+    this.DiscordJS = DiscordJS;
   }
 
   init() {

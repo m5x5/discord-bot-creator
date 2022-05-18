@@ -1,8 +1,8 @@
 export default {
-  name: "Add Embed Field",
-  section: "Embed Message",
+  name: 'Add Embed Field',
+  section: 'Embed Message',
 
-  fields: ["storage", "varName", "fieldName", "message", "inline"],
+  fields: ['storage', 'varName', 'fieldName', 'message', 'inline'],
 
   /** @this {import("../utils/Actions.js").default} */
   action(cache) {
@@ -12,10 +12,15 @@ export default {
     const embed = this.getVariable(storage, varName, cache);
     const name = this.evalMessage(data.fieldName, cache);
     const message = this.evalMessage(data.message, cache);
+    console.log(varName, storage);
 
-    const inline = Boolean(data.inline === "0");
+    const inline = Boolean(data.inline === '0');
     if (embed && embed.addField) {
-      embed.addField(name || "\u200B", message || "\u200B", inline);
+      embed.addField(name || '\u200B', message || '\u200B', inline);
+    } else if (!embed) {
+      throw new Error('No embed object found.');
+    } else if (!embed.addField) {
+      throw new Error('No addField method found on variable.');
     }
     this.callNextAction(cache);
   },
