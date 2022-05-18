@@ -1,12 +1,13 @@
+import * as Sentry from '@sentry/electron';
 import { app, globalShortcut, ipcMain, shell } from 'electron';
 import serve from 'electron-serve';
 import { createMenu, createWindow, Loader } from './helpers';
 import './helpers/ipc';
 import { addLog, getLogs } from './helpers/logs';
 
-try {
-  require('electron-reloader')(module);
-} catch (e) {}
+Sentry.init({
+  dsn: 'https://c2f332451a0d4d9c8054ee6ff67405a9@o1252972.ingest.sentry.io/6419301',
+});
 
 const isProd = process.env.NODE_ENV === 'production';
 
